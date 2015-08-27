@@ -1,3 +1,9 @@
+<?php 
+
+session_start();
+session_destroy();
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,8 +12,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Pontuall - Plataforma de Cartão Ponto Web</title>
 
@@ -53,6 +57,47 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <!-- Button trigger modal -->
+                            <button class="Login" data-toggle="modal" data-target="#myModal">
+                                Login
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Login</h4>
+                                        </div>
+                                            <form action="" method="post">
+                                                    <div class="modal-body">
+                                                 <label for="username">Usuário: </label>
+                                                    <input type="text" name="username" class="form-control" required />
+                                                    <br>
+                                                <label for="password">Senha: </label>
+                                                    <input type="password" name="password" class="form-control" required />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a  href="#contact" data-dismiss="modal" >Cadastre-se!</a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    <button type="submit" name="entrar" value="entrar" class="btn btn-primary">Entrar</button>
+                                                </div>
+                                            </form>
+                                            <?php include '/class/Carrega.class.php'; 
+                                                if (isset($_POST['entrar'])) {
+                                                    
+                                                $Usuario = new Usuario();
+                                                $Usuario->Login($_POST['username'], sha1($_POST['password']));
+                                                }
+                                            ?>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#about">Sobre</a>
                     </li>
                     <li>
@@ -71,7 +116,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-               <h1>Uma nova forma de calcular sua perícia</h1>
+               <h1>Uma nova forma de apuração de horas</h1>
                 <hr>
                 <p>Não perca mais seu tempo aprendendo a usar coisas desnecessárias, use só o essencial para o seu trabalho!</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Saiba Mais</a>
@@ -147,7 +192,45 @@
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>Comece a utilizar Agora!</h2>
-                <a href="#" class="btn btn-default btn-xl wow tada">Cadastro!</a>
+                 <!-- Button trigger modal -->
+                            <button class="btn btn-default btn-xl wow tada" data-toggle="modal" data-target="#myModal">
+                                Cadastro!
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Cadastro</h4>
+                                        </div>
+                                            <form class="form_group" action="" method="post">
+                                                    <div class="modal-body">
+                                                <label for="nome">Nome:</label>
+                                                    <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" autofocus required>
+                                                <label for="sobrenome">Sobre Nome:</label>
+                                                    <input class="form-control" id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required>
+                                                <label for="cpf">CPF:</label>
+                                                    <input class="form-control" id="cpf" type="text" name="cpf" placeholder="CPF" required>
+                                                <label for="email">E-mail:</label>
+                                                    <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" required>
+                                                <label for="senha">Senha:</label>
+                                                    <input class="form-control" id="senha" type="text" name="senha" placeholder="Senha" required>
+                                                <label for="username">Nome de Usuário:</label>
+                                                    <input class="form-control" id="username" type="text" name="username" placeholder="Nome de Usuário" required>
+                                        </div>
+                                                <div class="modal-footer">
+                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    <button type="reset">Limpar Dados</button>
+                                                    <button type="submit" name="cadastrar" value="cadastrar" class="btn btn-primary">Cadastrar</button>
+                                                </div>
+                                            </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
             </div>
         </div>
     </aside>
