@@ -1,6 +1,6 @@
 <?php 
+include_once 'BD.class.php';
 
-include 'Carrega.class.php';
 
 class Usuario
 {	
@@ -10,7 +10,7 @@ class Usuario
 	public $email;
 	public $senha;
 	public $username;
-	private $BD;
+	protected $BD;
 
 	function __construct(){
 		$this->BD = new BD();
@@ -26,8 +26,13 @@ class Usuario
 		$this->senha 	 = $senha;
 		$this->username	 = $username;
 
-		$BD->exec("INSERT INTO users (name_exp, last_name, cpf, email, password, username)
+		$result = $BD->pg_query("INSERT INTO users (name_exp, last_name, cpf, email, password, username)
 			VALUES ('$nome, $sobrenome, $cpf, $email, $senha, $username')");
+		if (isset($result)) {
+			echo "Usuario cadastrado com sucesso.";
+		} else {
+			echo "erro ao cadastrar.";
+		}
 	}
 
 	public function login($login, $senha)

@@ -171,14 +171,14 @@ aside {
         color: #00B25C;
     }
 }                                                               /*MODAL COMEÇA AQUI*/
-                                                                      
-.Login {                                                         /*LOGIN AQUI CARAMBA!!*/                          
+
+.Login {                                                         /*LOGIN AQUI CARAMBA!!*/
     padding: 15px;
-    background-color: transparent; 
+    background-color: transparent;
     border: 0;
     border-radius: 300px;
     text-transform: uppercase;
-    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;       
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
     font-size: 13px;
     font-weight: 700;
@@ -188,10 +188,10 @@ aside {
 .modal-content{
     width: 470px;
     text-align: center;
-}                                                               /*MODAL TERMINA AQUI*/    
+}                                                               /*MODAL TERMINA AQUI*/
 
 header {
-    position: relative;     
+    position: relative;
     width: 100%;
     min-height: auto;
     text-align: center;
@@ -498,4 +498,19 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #222;
+}
+
+.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+}
+
+#myModalLabel2 {
+    color: black;
+    font-weight: bold;
+
 }

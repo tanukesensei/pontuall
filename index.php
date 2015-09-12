@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+    
 session_start();
 session_destroy();
 
@@ -16,7 +16,7 @@ session_destroy();
     <title>Pontuall - Plataforma de Cartão Ponto Web</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -78,19 +78,12 @@ session_destroy();
                                                     <input type="password" name="password" class="form-control" required />
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a  href="#contact" data-dismiss="modal" >Cadastre-se!</a>
+                                                    <a  href="#contact" >Cadastre-se!</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                     <button type="submit" name="entrar" value="entrar" class="btn btn-primary">Entrar</button>
                                                 </div>
                                             </form>
-                                            <?php include '/class/Carrega.class.php'; 
-                                                if (isset($_POST['entrar'])) {
-                                                    
-                                                $Usuario = new Usuario();
-                                                $Usuario->Login($_POST['username'], sha1($_POST['password']));
-                                                }
-                                            ?>
-                                    </div>
+                                        </div>
                                     <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
@@ -183,7 +176,7 @@ session_destroy();
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter">
-               
+
             </div>
         </div>
     </section>
@@ -193,35 +186,40 @@ session_destroy();
             <div class="call-to-action">
                 <h2>Comece a utilizar Agora!</h2>
                  <!-- Button trigger modal -->
-                            <button class="btn btn-default btn-xl wow tada" data-toggle="modal" data-target="#myModal">
+                            <button class="btn btn-default btn-xl wow tada" data-toggle="modal" data-target="#myModal2">
                                 Cadastro!
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">Cadastro</h4>
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                                            <h4 class="modal-title" id="myModalLabel2">Cadastro</h4>
                                         </div>
-                                            <form class="form_group" action="" method="post">
+                                            <form class="form_group" action="php/crud_user.php" method="post">
                                                     <div class="modal-body">
-                                                <label for="nome">Nome:</label>
+                                                <label for="nome" class="control-label" >Nome:</label>
                                                     <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" autofocus required>
-                                                <label for="sobrenome">Sobre Nome:</label>
+
+                                                <label for="sobrenome" class="control-label" >Sobre Nome:</label>
                                                     <input class="form-control" id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required>
-                                                <label for="cpf">CPF:</label>
+
+                                                <label for="cpf" class="control-label">CPF:</label>
                                                     <input class="form-control" id="cpf" type="text" name="cpf" placeholder="CPF" required>
-                                                <label for="email">E-mail:</label>
+
+                                                <label for="email" class="control-label">E-mail:</label>
                                                     <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" required>
-                                                <label for="senha">Senha:</label>
-                                                    <input class="form-control" id="senha" type="text" name="senha" placeholder="Senha" required>
-                                                <label for="username">Nome de Usuário:</label>
+
+                                                <label for="senha" class="control-label">Senha:</label>
+                                                    <input class="form-control" id="senha" type="password" name="senha" placeholder="Senha" required>
+
+                                                <label for="username" class="control-label">Nome de Usuário:</label>
                                                     <input class="form-control" id="username" type="text" name="username" placeholder="Nome de Usuário" required>
                                         </div>
                                                 <div class="modal-footer">
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                                    <button type="reset">Limpar Dados</button>
+                                                    <button type="reset" class="btn btn-default" >Limpar Dados</button>
                                                     <button type="submit" name="cadastrar" value="cadastrar" class="btn btn-primary">Cadastrar</button>
                                                 </div>
                                             </form>
