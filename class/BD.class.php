@@ -1,5 +1,24 @@
 <?php
 
+include_once 'Carrega.class.php'; 
+
+class BD {
+    public function __construct() {
+
+pg_connect("host=localhost user=postgres password=senha5 dbname=pontuall port=5432")
+                or die("Erro ao conectar ao servidor");
+    }
+    
+  
+    
+    public function __destruct() {
+        //pg_close();
+    }
+}
+
+
+
+/*
   class BD
   {
     public $pdo;
@@ -36,4 +55,4 @@
 
   }
 
-?>
+*/?>
