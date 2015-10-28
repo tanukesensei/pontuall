@@ -1,10 +1,10 @@
-	<!DOCTYPE html>
-	<html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8">
-		<title>Verificando</title>
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Verificando</title>
+</head>
+<body>
 <?php 
 
 	include '../class/Carrega.class.php';
@@ -26,5 +26,5 @@ header("Location:user_process.php");
  	} 
 
  ?>		
-	</body>
-	</html>
+</body>
+</html>
