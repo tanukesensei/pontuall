@@ -1,9 +1,32 @@
 <?php
-    
 session_start();
-session_destroy();
+if (isset($_POST["username"])) {
+    include 'class/Carrega.class.php';
+    // instanciar a classe
+    $objUsuario = new Usuario();
+    //buscamos os dados do post
+    $login = $_POST["username"];
+    $senha = sha1($_POST["password"]);
+    //chamamos o listar passando o complemento (where)
+    $retorno = $objUsuario->listar("WHERE username='$login' AND password='$senha' ");
+    //se retornou null, não achou, caso contrario, o login e senha estão certos.
+    if ($retorno == NULL) {
+        //mensagem de erro
+        header("location:php/erro_login.php");
+    } else {
+        // vai guardar o registro retornado.
+       
+        $_SESSION["username"] = $retorno[0];
+        //vai pra logado.
+        header("location:php/user_process.php");
+    }
+
+
+} 
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -69,7 +92,7 @@ session_destroy();
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title" id="myModalLabel">Login</h4>
                                         </div>
-                                            <form action="" method="post">
+                                            <form action="index.php" method="post">
                                                     <div class="modal-body">
                                                  <label for="username">Usuário: </label>
                                                     <input type="text" name="username" class="form-control" required />
@@ -197,7 +220,7 @@ session_destroy();
                                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
                                             <h4 class="modal-title" id="myModalLabel2">Cadastro</h4>
                                         </div>
-                                            <form class="form_group" action="php/crud_user.php" method="post">
+                                            <form class="form_group" action="php/user_cad.php" method="post">
                                                     <div class="modal-body">
                                                 <label for="nome" class="control-label" >Nome:</label>
                                                     <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" autofocus required>

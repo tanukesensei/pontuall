@@ -16,13 +16,13 @@ $objUsuario->nome = $_POST["nome"];
 $objUsuario->sobrenome = $_POST["sobrenome"];
 $objUsuario->cpf = $_POST["cpf"];
 $objUsuario->email = $_POST["email"];
-$objUsuario->senha= $_POST["senha"];
+$objUsuario->senha= sha1($_POST["senha"]);
 $objUsuario->username = $_POST["username"];
 $objUsuario->inserir();
 
 echo "<script> alert('Cadastro Efetuado com Sucesso!');</script>";
 
-header("Location:../index.php");
+header("Location:user_process.php");
  	} 
 
  ?>		

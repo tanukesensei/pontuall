@@ -38,7 +38,6 @@ class Usuario
         $sql = "INSERT INTO $this->tabela (name_exp, last_name, cpf, email, password, username) values 
         ('$this->nome','$this->sobrenome','$this->cpf', '$this->email','$this->senha', '$this->username')";
         
-        echo $sql;
         $retorno = pg_query($sql);
         return $retorno;
     }
@@ -54,11 +53,11 @@ class Usuario
             //transforma em objetos categoria
             $obj = new Usuario();
             $obj->id = $reg["id"];
-            $obj->nome = $reg["nome"];
-            $obj->sobrenome = $reg["sobrenome"];
+            $obj->nome = $reg["name_exp"];
+            $obj->sobrenome = $reg["last_name"];
             $obj->cpf = $reg["cpf"];
             $obj->email = $reg["email"];
-            $obj->senha = $reg["senha"];
+            $obj->senha = $reg["password"];
             $obj->username = $reg["username"];
             //adiciona a variavel de retorno
             $retorno[] = $obj;
