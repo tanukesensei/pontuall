@@ -9,7 +9,7 @@
 
 	include '../class/Carrega.class.php';
 
- if (isset($_POST["cadastrar"], $_POST["nome"], $_POST["sobrenome"], $_POST["cpf"], $_POST["email"], $_POST["senha"], $_POST["username"])){
+if (isset($_POST["cadastrar"], $_POST["nome"], $_POST["sobrenome"], $_POST["cpf"], $_POST["email"], $_POST["senha"], $_POST["username"])){
 
 $objUsuario = new Usuario();
 $objUsuario->nome = $_POST["nome"];

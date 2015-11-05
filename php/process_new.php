@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 
     include '../class/Carrega.class.php';
     session_start();
-    if (isset($_SESSION["username"])) 
+    if (isset($_SESSION["username"]))
     {
          $login = $_SESSION["username"]->username;
          $id = $_SESSION["username"]->id;
     } else {
         header("Location:../index.php");
-    }    
+    }
 
 ?>
 
@@ -18,7 +18,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cadastro de Processos</title>
-	
+
 	<!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 
@@ -32,17 +32,18 @@
 <body id="body">
     <section>
         <nav>
-            
+
         </nav>
     </section>
 
-    
+
     <section>
         <h3>Cadastro de Processos</h3>
 	<article>
 	    <form action="process_cad.php" method="post">
-            <!-- adicionar aqui um campo hidden com o ID do perito, né nego-->
-            <input type="hidden" name="id" value="<?php echo $id; ?>" >
+            <label for="num_processo">Número do Processo:</label>
+            <input type="text" name="num_processo" class="form-control"><br />
+            <input type="hidden" name="id_perito" value="<?php echo $id; ?>" >
             <label for="vara_trabalho">Vara de Trabalho:</label>
             <input type="text" name="vara_trabalho" class="form-control"><br />
             <label for="nome_reclamado">Nome do Reclamado:</label>

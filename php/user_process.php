@@ -1,8 +1,8 @@
-<?php 
+<?php
 
     include '../class/Carrega.class.php';
     session_start();
-    if (isset($_SESSION["username"])) 
+    if (isset($_SESSION["username"]))
     {
          $login = $_SESSION["username"]->username;
     } else {
@@ -36,7 +36,7 @@
 
 
 <body>
-	
+
 	 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -56,7 +56,7 @@
                         <a class="novo" href="process_new.php">Novo Processo <?php $novo; ?> </a>
                     </li>
                     <li>
-                        <a class="editar" href="#">Usuário: <?php echo $login; ?> </a>
+                        <a class="editar" href="javascript:void(0);">Usuário: <?php echo $login; ?> </a>
                     </li>
                     <li>
                         <a class="sair" href="logout.php">Sair</a>
@@ -69,9 +69,19 @@
     </nav>
 
     <container class="processos">
-        <?php 
+        <?php
 
             echo "LOGADEX";
+            $objProcesso = new Processo();
+            $complemento = "ORDER BY id";
+            $lista = $objProcesso->listar($complemento);
+            $linhas = "";
+
+            if ($lista != null) {
+                foreach ($lista as $processo) {
+                  $linhas."<a href='#'>".$processo->nome_reclamante.",".$processo->nome_reclamado.",".$processo->num_processo;
+                }
+            }
 
          ?>
     </container>

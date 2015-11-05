@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 include_once 'BD.class.php';
 
-class Processo 
+class Processo
 {
 
 							//NOME NO BANCO
-	private $id;				//id
+	private $num_processo;	//num_process
 	private $id_perito;			//id_expert
 	private $vara_trabalho;		//labour_stick
 	private $nome_reclamado;	//name_claimed
@@ -19,6 +19,7 @@ class Processo
 	private $quebra_semanal;	//weekly_break;
 	private $quebra_mensal;		//monthly_breakdown
 	private $periodo_calculado;	//calculation_period
+	private $id;					//id
 	private $bd;
 	private $tabela;
 
@@ -42,13 +43,13 @@ class Processo
 
 	//METODOS DO BANCO DE DADOS
 	public function inserir() {
-		$sql = "INSERT INTO $this->tabela (id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
 			initial_date, end_date, admission_date, type_process, weekly_break, monthly_breakdown, calculation_period) values
-			('$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante', '$this->horas_trabalhadas',
-			 '$this->data_inicial', '$this->data_final', '$this->data_admissao', '$this->tipo_processo', '$this->quebra_semanal',
-			 '$this->quebra_mensal', '$this->periodo_calculado'
-			) ";
+			('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
+			 '$this->horas_trabalhadas', '$this->data_inicial', '$this->data_final', '$this->data_admissao', '$this->tipo_processo',
+			 '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
 
+			echo $sql;
 		$retorno = pg_query($sql);
 		return $retorno;
 	}
@@ -83,7 +84,7 @@ class Processo
     }
 
     public function excluir() {
-        
+
         $sql = "delete from $this->tabela where id = $this->id";
         $retorno = pg_query($sql);
         return $retorno;
@@ -91,9 +92,9 @@ class Processo
 
      public function atualizar() {
         $retorno = false;
-        $sql = "update $this->tabela set labour_stick ='$this->vara_trabalho', name_claimed ='$this->nome_reclamado', 
-        claimants_name ='$this->nome_reclamante', worked_hours ='$this->horas_trabalhadas', initial_date ='$this->data_inicial', 
-        end_date ='$this->data_final', admission_date ='$this->data_admissao', type_process ='$this->tipo_processo', 
+        $sql = "update $this->tabela set labour_stick ='$this->vara_trabalho', name_claimed ='$this->nome_reclamado',
+        claimants_name ='$this->nome_reclamante', worked_hours ='$this->horas_trabalhadas', initial_date ='$this->data_inicial',
+        end_date ='$this->data_final', admission_date ='$this->data_admissao', type_process ='$this->tipo_processo',
         weekly_break ='$this->quebra_semanal', monthly_breakdown ='$this->quebra_mensal', calculation_period ='$this->periodo_calculado' where
                        id = $this->id";
         $retorno = pg_query($sql);
