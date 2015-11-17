@@ -71,7 +71,7 @@
     <container class="processos">
         <?php
 
-            echo "LOGADEX";
+            echo "LOGADEX<br>";
             $objProcesso = new Processo();
             $complemento = "ORDER BY id";
             $lista = $objProcesso->listar($complemento);
@@ -79,7 +79,8 @@
 
             if ($lista != null) {
                 foreach ($lista as $processo) {
-                  $linhas."<a href='#'>".$processo->nome_reclamante.",".$processo->nome_reclamado.",".$processo->num_processo;
+                  $exibeProcesso = $linhas."<a href='#'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo;
+                  echo $exibeProcesso ;
                 }
             }
 

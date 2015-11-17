@@ -15,14 +15,14 @@ if (isset($_POST["username"])) {
         header("location:php/erro_login.php");
     } else {
         // vai guardar o registro retornado.
-       
+
         $_SESSION["username"] = $retorno[0];
         //vai pra logado.
         header("location:php/user_process.php");
     }
 
 
-} 
+}
 
 
 ?>
@@ -223,22 +223,22 @@ if (isset($_POST["username"])) {
                                             <form class="form_group" action="php/user_cad.php" method="post">
                                                     <div class="modal-body">
                                                 <label for="nome" class="control-label" >Nome:</label>
-                                                    <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" autofocus required>
+                                                    <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" required="required" autofocus>
 
                                                 <label for="sobrenome" class="control-label" >Sobre Nome:</label>
-                                                    <input class="form-control" id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required>
+                                                    <input class="form-control" id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="required" autofocus>
 
                                                 <label for="cpf" class="control-label">CPF:</label>
-                                                    <input class="form-control" id="cpf" type="text" name="cpf" placeholder="CPF" required>
+                                                    <input class="form-control" id="cpf" type="text" name="cpf" placeholder="CPF" maxlength="11" required="required" autofocus>
 
                                                 <label for="email" class="control-label">E-mail:</label>
-                                                    <input class="form-control" id="email" type="text" name="email" placeholder="E-mail" required>
+                                                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail"  required="required" autofocus>
 
                                                 <label for="senha" class="control-label">Senha:</label>
-                                                    <input class="form-control" id="senha" type="password" name="senha" placeholder="Senha" required>
+                                                    <input class="form-control" id="senha" type="password" name="senha" placeholder="Senha" required="required" autofocus>
 
                                                 <label for="username" class="control-label">Nome de Usuário:</label>
-                                                    <input class="form-control" id="username" type="text" name="username" placeholder="Nome de Usuário" required>
+                                                    <input class="form-control" id="username" type="text" name="username" placeholder="Nome de Usuário" required="required" autofocus>
                                         </div>
                                                 <div class="modal-footer">
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

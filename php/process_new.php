@@ -20,7 +20,7 @@
 	<title>Cadastro de Processos</title>
 
 	<!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -42,31 +42,46 @@
 	<article>
 	    <form action="process_cad.php" method="post">
             <label for="num_processo">Número do Processo:</label>
-            <input type="text" name="num_processo" class="form-control"><br />
+            <input type="text" name="num_processo" class="form-control" required="required"><br />
+
             <input type="hidden" name="id_perito" value="<?php echo $id; ?>" >
+
             <label for="vara_trabalho">Vara de Trabalho:</label>
-            <input type="text" name="vara_trabalho" class="form-control"><br />
+            <input type="text" name="vara_trabalho" class="form-control" required="required"><br />
+
             <label for="nome_reclamado">Nome do Reclamado:</label>
-            <input type="text" name="nome_reclamado" class="form-control"><br />
+            <input type="text" name="nome_reclamado" class="form-control" required="required"><br />
+
             <label for="nome_reclamado">Nome do Reclamante:</label>
-            <input type="text" name="nome_reclamante" class="form-control"><br />
+            <input type="text" name="nome_reclamante" class="form-control" required="required"><br />
+
             <label for="horas_trabalhadas">Horas Trabalhadas:</label>
-            <input type="text" name="horas_trabalhadas" class="form-control"><br />
+            <input type="text" name="horas_trabalhadas" class="form-control" required="required"><br />
+
             <label for="data_inicial">Data Inicial:</label>
-            <input type="text" name="data_inicial" class="form-control"><br />
+            <input type="text" name="data_inicial" class="form-control" required="required"><br />
+
             <label for="data_final">Data Final:</label>
-            <input type="text" name="data_final" class="form-control"><br />
+            <input type="text" name="data_final" class="form-control" required="required"><br />
+
             <label for="data_admissao">Data de Admissão:</label>
-            <input type="text" name="data_admissao" class="form-control"><br />
+            <input type="text" name="data_admissao" class="form-control" required="required"><br />
+
             <label for="tipo_processo">Tipo de Processo:</label>
-            <input type="text" name="tipo_processo" class="form-control"><br />
+            <input type="text" name="tipo_processo" class="form-control" required="required"><br />
+
             <label for="quebra_semanal">Quebra da Semana:</label>
-            <input type="text" name="quebra_semanal" class="form-control"><br />
+            <input type="number" name="quebra_semanal" class="form-control" required="required"><br />
+
             <label for="quebra_mensal">Quebra do Mês:</label>
-            <input type="text" name="quebra_mensal" class="form-control"><br />
+            <input type="number" name="quebra_mensal" class="form-control" required="required"><br />
+
             <label for="periodo_calculado">Período Calculado:</label>
-            <input type="text" name="periodo_calculado" class="form-control"><br />
+            <input type="text" name="periodo_calculado" class="form-control" required="required"><br />
+
             <input type="submit" name="cadastrar" value="Cadastrar">
+
+            <button type="button" name="button" value="Voltar"><a href="user_process.php">Voltar</a></button>
         </form>
 	</article>
     </section>

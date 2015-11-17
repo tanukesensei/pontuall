@@ -65,13 +65,14 @@ class Processo
             //transforma em objetos categoria
             $obj = new Processo();
             $obj->id = $reg["id"];
-            $obj->id_perito = 		  $reg["id_expert"];
+            $obj->id_perito = 		 	  $reg["id_expert"];
+						$obj->num_processo  = 		$reg["num_process"];
             $obj->vara_trabalho = 	  $reg["labour_stick"];
             $obj->nome_reclamado = 	  $reg["name_claimed"];
             $obj->nome_reclamante =   $reg["claimants_name"];
             $obj->horas_trabalhadas = $reg["worked_hours"];
             $obj->data_inicial =      $reg["initial_date"];
-            $obj->data_final = 		  $reg["end_date"];
+            $obj->data_final = 		 	  $reg["end_date"];
             $obj->data_admissao = 	  $reg["admission_date"];
             $obj->tipo_processo = 	  $reg["type_process"];
             $obj->quebra_semanal = 	  $reg["weekly_break"];
@@ -111,13 +112,14 @@ class Processo
         if ($req == true) {
             $obj = new Processo();
             $obj->id = $reg["id"];
-            $obj->id_perito = 		  $reg["id_perito"];
+            $obj->id_perito = 		  	$reg["id_perito"];
+						$obj->num_processo=       $reg["num_processo"];
             $obj->vara_trabalho = 	  $reg["vara_trabalho"];
             $obj->nome_reclamado = 	  $reg["nome_reclamado"];
             $obj->nome_reclamante =   $reg["nome_reclamante"];
             $obj->horas_trabalhadas = $reg["horas_trabalhadas"];
             $obj->data_inicial =      $reg["data_inicial"];
-            $obj->data_final = 		  $reg["data_final"];
+            $obj->data_final = 		  	$reg["data_final"];
             $obj->data_admissao = 	  $reg["data_admissao"];
             $obj->tipo_processo = 	  $reg["tipo_processo"];
             $obj->quebra_semanal = 	  $reg["quebra_semanal"];
