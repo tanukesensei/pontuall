@@ -34,6 +34,7 @@ a {
 a:hover,
 a:focus {
     color: #00B25C;
+    text-decoration: none;
 }
 
 h1,
@@ -196,13 +197,17 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;                                 /*ALTERADO AQUI*/
-    background-image: url(../img/header.png);           /* #b8b8b8 : PRATEADO - com interessante.*/
+                                                        /* #b8b8b8 : PRATEADO - com interessante.*/
     background-position: center;                        /* #00B25c : Verde Salsa - com interessante.*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
     text-shadow: 3px 3px 20px black;
+}
+
+.bg-calc {
+  background-image: url(../img/header.png);
 }
 
 header #background-image{
@@ -512,5 +517,15 @@ body {
 #myModalLabel2 {
     color: black;
     font-weight: bold;
+}
 
+.exibe_processo {
+height: 50px;
+width: 100%;
+display: none;
+
+}
+
+#calc { /*usado na página User_process.php, no body.*/
+  background-color: gainsboro;
 }

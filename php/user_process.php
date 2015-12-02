@@ -19,7 +19,7 @@
 
 
 	 <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -27,16 +27,15 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="../css/creative.css" type="text/css">
 </head>
 
 
 
-<body>
-
+<body id="calc">
 	 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,26 +66,28 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+<div class="exibe_processo">
 
-    <container class="processos">
-        <?php
+</div>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+              <?php
+                  $objProcesso = new Processo();
+                  $complemento = "ORDER BY id DESC";
+                  $lista = $objProcesso->listar($complemento);
+                  $linhas = "";
 
-            echo "LOGADEX<br>";
-            $objProcesso = new Processo();
-            $complemento = "ORDER BY id";
-            $lista = $objProcesso->listar($complemento);
-            $linhas = "";
-
-            if ($lista != null) {
-                foreach ($lista as $processo) {
-                  $exibeProcesso = $linhas."<a href='#'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo;
-                  echo $exibeProcesso ;
-                }
-            }
-
-         ?>
-    </container>
-    <container class=""></container>
+                  if ($lista != null) {
+                      foreach ($lista as $processo) {
+                        $exibeProcesso = $linhas."<strong><a href='cartao_ponto.php'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo."</strong><br />";
+                        echo $exibeProcesso ;
+                      }
+                  }
+               ?>
+            </div>
+        </div>
+    </header>
 
 </body>
 </html>

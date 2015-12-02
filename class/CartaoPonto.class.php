@@ -1,14 +1,14 @@
-<?php 
+<?php
 
 include_once 'BD.class.php';
 
-class CartaoPonto 
+class CartaoPonto
 {
 									//NOME NO BANCO
-	private $id	
-	private $id_expert					//id_perito
-	private $id_processo 				//id_process	
-	private $data_dia					//date_day	
+	private $id
+	private $id_perito					//id_perito
+	private $id_processo 				//id_process
+	private $data_dia					//date_day
 	private $entrada_manha				//morning_entry
 	private $entrada_tarde				//late_entry
 	private $entrada_noite				//night_entry
@@ -51,7 +51,7 @@ class CartaoPonto
 		morning_departure, afternoon_departure, night_departure, nocturnal_rest_worked, extra_hour_daily1, extra_hour_daily2, extra_hour_daily3,
 		night_overtime1, night_overtime2, night_overtime3, total_daily_time, situation) values ('$this->id_perito', '$this->id_processo',
 		'$this->data_dia', '$this->entrada_manha', '$this->entrada_tarde', '$this->entrada_noite', '$this->descanso_diurno_trabalhado',
-		'$this->saida_manha', '$this->saida_tarde', '$this->saida_noite', '$this->descanso_noturno_trabalhado', '$this->hora_extra_diurna', 
+		'$this->saida_manha', '$this->saida_tarde', '$this->saida_noite', '$this->descanso_noturno_trabalhado', '$this->hora_extra_diurna',
 		'$this->hora_extra_diurna2', '$this->hora_extra_diurna3', '$this->hora_extra_noturna', '$this->hora_extra_noturna2',
 		'$this->hora_extra_noturna3', '$this->hora_diaria_total','$this->situacao') ";
 
@@ -96,7 +96,7 @@ class CartaoPonto
     }
 
     public function excluir() {
-        
+
         $sql = "delete from $this->tabela where id = $this->id";
         $retorno = pg_query($sql);
         return $retorno;
@@ -104,11 +104,11 @@ class CartaoPonto
 
     public function atualizar() {
         $retorno = false;
-        $sql = "update $this->tabela set date_day ='$this->data_dia', morning_entry ='$this->entrada_manha', 
-        late_entry ='$this->entrada_tarde', night_entry ='$this->entrada_noite', daily_rest_worked ='$this->descanso_diurno_trabalhado', 
-        morning_departure ='$this->saida_manha', afternoon_departure ='$this->saida_tarde', night_departure ='$this->saida_noite', 
-        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado', extra_hour_daily1 ='$this->hora_extra_diurna', 
-        extra_hour_daily2 ='$this->hora_extra_diurna2', extra_hour_daily3 ='$this->hora_extra_diurna3', 
+        $sql = "update $this->tabela set date_day ='$this->data_dia', morning_entry ='$this->entrada_manha',
+        late_entry ='$this->entrada_tarde', night_entry ='$this->entrada_noite', daily_rest_worked ='$this->descanso_diurno_trabalhado',
+        morning_departure ='$this->saida_manha', afternoon_departure ='$this->saida_tarde', night_departure ='$this->saida_noite',
+        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado', extra_hour_daily1 ='$this->hora_extra_diurna',
+        extra_hour_daily2 ='$this->hora_extra_diurna2', extra_hour_daily3 ='$this->hora_extra_diurna3',
         night_overtime1 ='$this->hora_extra_noturna', night_overtime2 ='$this->hora_extra_noturna2', night_overtime3 ='$this->hora_extra_noturna3',
         total_daily_time ='$this->hora_diaria_total', situation ='$this->situacao' where
                        id = $this->id";

@@ -1,27 +1,28 @@
 <?php
 
-include_once 'BD.class.php';
+include_once 'Carrega.class.php';
 
 class Processo
 {
 
 							//NOME NO BANCO
-	private $num_processo;	//num_process
-	private $id_perito;			//id_expert
-	private $vara_trabalho;		//labour_stick
-	private $nome_reclamado;	//name_claimed
-	private $nome_reclamante;	//claimants_name
-	private $horas_trabalhadas;	//worked_hours
-	private $data_inicial;		//initial_date
-	private $data_final;		//end_date
-	private $data_admissao; 	//admission_date
-	private $tipo_processo;		//type_process
-	private $quebra_semanal;	//weekly_break;
-	private $quebra_mensal;		//monthly_breakdown
-	private $periodo_calculado;	//calculation_period
-	private $id;					//id
+	private $num_processo;	//num_process - num_processo
+	private $id_perito;			//id_expert - id_perito
+	private $vara_trabalho;		//labour_stick - vara_trabalho
+	private $nome_reclamado;	//name_claimed - nome_reclamado
+	private $nome_reclamante;	//claimants_name - nome_reclamante
+	private $horas_trabalhadas;	//worked_hours - horas_trabalhadas
+	private $data_distribuicao;	//date_distribution - data_distribuicao
+	private $data_admissao;    	//admission_date - data_admissao
+	private $data_demissao; 		//resignation_date - data_demissao
+	private $tipo_processo;		//type_process - tipo_processo
+	private $quebra_semanal;	//weekly_break - quebra_semanal
+	private $quebra_mensal;		//monthly_breakdown - quebra_mensal
+	private $periodo_calculado;	//calculation_period - periodo_calculado
+	private $id;								//id
+	private $data_prescricao;  //prescription_date - data_prescricao
 	private $bd;
-	private $tabela;
+	private $tabela;					//tabela
 
 
 	public function __construct() {
@@ -43,13 +44,49 @@ class Processo
 
 	//METODOS DO BANCO DE DADOS
 	public function inserir() {
-		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
-			initial_date, end_date, admission_date, type_process, weekly_break, monthly_breakdown, calculation_period) values
-			('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
-			 '$this->horas_trabalhadas', '$this->data_inicial', '$this->data_final', '$this->data_admissao', '$this->tipo_processo',
-			 '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
 
-			echo $sql;
+		if ($this->data_prescricao!=null && $this->data_demissao!=null)
+		{
+		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown,
+			 calculation_period)
+			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
+			 '$this->horas_trabalhadas', '$this->data_distribuicao','$this->data_prescricao','$this->data_demissao', '$this->data_admissao',
+			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
+		 }
+		 	elseif ($this->data_prescricao==null && $this->data_demissao==null)
+				 {
+
+					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+			 			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown,
+			 			 calculation_period)
+			 			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
+			 			 '$this->horas_trabalhadas', '$this->data_distribuicao',NULL,NULL, '$this->data_admissao',
+			 			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
+
+				 }
+				 elseif ($this->data_prescricao==null)
+					 {
+					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+						 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown,
+						 calculation_period)
+						 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
+						 '$this->horas_trabalhadas', '$this->data_distribuicao',NULL,'$this->data_demissao', '$this->data_admissao',
+						 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
+					 }
+					 elseif ($this->data_demissao==null)
+						 {
+
+							 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+								 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown,
+								 calculation_period)
+								 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
+								 '$this->horas_trabalhadas', '$this->data_distribuicao','$this->data_prescricao',NULL, '$this->data_admissao',
+								 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->periodo_calculado')";
+
+						 }
+
+			 echo $sql;
 		$retorno = pg_query($sql);
 		return $retorno;
 	}
@@ -71,13 +108,14 @@ class Processo
             $obj->nome_reclamado = 	  $reg["name_claimed"];
             $obj->nome_reclamante =   $reg["claimants_name"];
             $obj->horas_trabalhadas = $reg["worked_hours"];
-            $obj->data_inicial =      $reg["initial_date"];
-            $obj->data_final = 		 	  $reg["end_date"];
-            $obj->data_admissao = 	  $reg["admission_date"];
+            $obj->data_distribuicao = $reg["date_distribution"];
+						$obj->data_demissao = 		$reg["resignation_date"];
+						$obj->data_admissao = 	  $reg["admission_date"];
             $obj->tipo_processo = 	  $reg["type_process"];
             $obj->quebra_semanal = 	  $reg["weekly_break"];
             $obj->quebra_mensal = 	  $reg["monthly_breakdown"];
             $obj->periodo_calculado = $reg["calculation_period"];
+						$obj->data_prescricao = 	$reg["prescription_date"];
             //adiciona a variavel de retorno
             $retorno[] = $obj;
         }
@@ -94,10 +132,10 @@ class Processo
      public function atualizar() {
         $retorno = false;
         $sql = "update $this->tabela set labour_stick ='$this->vara_trabalho', name_claimed ='$this->nome_reclamado',
-        claimants_name ='$this->nome_reclamante', worked_hours ='$this->horas_trabalhadas', initial_date ='$this->data_inicial',
-        end_date ='$this->data_final', admission_date ='$this->data_admissao', type_process ='$this->tipo_processo',
-        weekly_break ='$this->quebra_semanal', monthly_breakdown ='$this->quebra_mensal', calculation_period ='$this->periodo_calculado' where
-                       id = $this->id";
+        claimants_name ='$this->nome_reclamante', worked_hours ='$this->horas_trabalhadas', date_distribution ='$this->data_distribuicao',
+				resignation_date ='$this->data_demissao', admission_date ='$this->data_admissao', type_process ='$this->tipo_processo',
+				weekly_break ='$this->quebra_semanal', monthly_breakdown ='$this->quebra_mensal', calculation_period ='$this->periodo_calculado',
+				prescription_date = '$this->data_prescricao' where id = $this->id";
         $retorno = pg_query($sql);
         return $retorno;
     }
@@ -118,13 +156,14 @@ class Processo
             $obj->nome_reclamado = 	  $reg["nome_reclamado"];
             $obj->nome_reclamante =   $reg["nome_reclamante"];
             $obj->horas_trabalhadas = $reg["horas_trabalhadas"];
-            $obj->data_inicial =      $reg["data_inicial"];
-            $obj->data_final = 		  	$reg["data_final"];
+            $obj->data_distribuicao = $reg["data_distribuicao"];
+						$obj->data_demissao = 		$reg["data_demissao"];
             $obj->data_admissao = 	  $reg["data_admissao"];
             $obj->tipo_processo = 	  $reg["tipo_processo"];
             $obj->quebra_semanal = 	  $reg["quebra_semanal"];
             $obj->quebra_mensal = 	  $reg["quebra_mensal"];
             $obj->periodo_calculado = $reg["periodo_calculado"];
+						$obj->data_prescricao =		$reg["data_prescricao"];
             //adiciona a variavel de retorno
             $retorno[] = $obj;
         } else {
