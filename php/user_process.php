@@ -2,10 +2,8 @@
 
     include '../class/Carrega.class.php';
     session_start();
-    if (isset($_SESSION["username"]))
+    if (empty($_SESSION['id']) && empty($_SESSION['username']))
     {
-         $login = $_SESSION["username"]->username;
-    } else {
         header("Location:../index.php");
     }
 ?>
@@ -55,7 +53,7 @@
                         <a class="novo" href="process_new.php">Novo Processo <?php $novo; ?> </a>
                     </li>
                     <li>
-                        <a class="editar" href="javascript:void(0);">Usuário: <?php echo $login; ?> </a>
+                        <a class="editar" href="user_edit.php">Usuário: <?php echo $_SESSION['username']; ?> </a>
                     </li>
                     <li>
                         <a class="sair" href="logout.php">Sair</a>
@@ -80,7 +78,7 @@
 
                   if ($lista != null) {
                       foreach ($lista as $processo) {
-                        $exibeProcesso = $linhas."<strong><a href='cartao_ponto.php'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo."</strong><br />";
+                        $exibeProcesso = $linhas."<strong><a href='cartao_ponto.php?id=".$processo->id."'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo."</strong><br />";
                         echo $exibeProcesso ;
                       }
                   }

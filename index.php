@@ -5,20 +5,20 @@ if (isset($_POST["username"])) {
     // instanciar a classe
     $objUsuario = new Usuario();
     //buscamos os dados do post
-    $login = $_POST["username"];
-    $senha = sha1($_POST["password"]);
-    //chamamos o listar passando o complemento (where)
-    $retorno = $objUsuario->listar("WHERE username='$login' AND password='$senha' ");
-    //se retornou null, não achou, caso contrario, o login e senha estão certos.
-    if ($retorno == NULL) {
-        //mensagem de erro
-        header("location:php/erro_login.php");
-    } else {
-        // vai guardar o registro retornado.
 
-        $_SESSION["username"] = $retorno[0];
-        //vai pra logado.
+
+    //chamamos o listar passando o complemento (where)
+
+    //se retornou null, não achou, caso contrario, o login e senha estão certos.
+    if ($objUsuario->login($_POST["username"], sha1($_POST["password"]))) {
+        //mensagem de erro
         header("location:php/user_process.php");
+
+    } else {
+
+        //vai pra logado.
+        header("location:php/erro_login.php");
+
     }
 
 

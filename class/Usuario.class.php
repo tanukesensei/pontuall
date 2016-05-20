@@ -3,7 +3,7 @@
 include_once 'BD.class.php';
 
 class Usuario
-{	
+{
 	private $nome;
 	private $sobrenome;
 	private $cpf;
@@ -26,18 +26,18 @@ class Usuario
         return $this->$key;
     }
 
-    //método de retorno de valores do objeto 
+    //método de retorno de valores do objeto
     public function __set($key, $value) {
         $this->$key = $value;
     }
 
-    //METODOS 
+    //METODOS
     //BANCO DE DADOS
     public function inserir() {
-        
-        $sql = "INSERT INTO $this->tabela (name_exp, last_name, cpf, email, password, username) values 
+
+        $sql = "INSERT INTO $this->tabela (name_exp, last_name, cpf, email, password, username) values
         ('$this->nome','$this->sobrenome','$this->cpf', '$this->email','$this->senha', '$this->username')";
-        
+
         $retorno = pg_query($sql);
         return $retorno;
     }
@@ -51,22 +51,22 @@ class Usuario
         //percorre os registros
         while ($reg = pg_fetch_assoc($resultado)) {
             //transforma em objetos categoria
-            $obj = new Usuario();
-            $obj->id = $reg["id"];
-            $obj->nome = $reg["name_exp"];
+            $obj            = new Usuario();
+            $obj->id        = $reg["id"];
+            $obj->nome      = $reg["name_exp"];
             $obj->sobrenome = $reg["last_name"];
-            $obj->cpf = $reg["cpf"];
-            $obj->email = $reg["email"];
-            $obj->senha = $reg["password"];
-            $obj->username = $reg["username"];
+            $obj->cpf       = $reg["cpf"];
+            $obj->email     = $reg["email"];
+            $obj->senha     = $reg["password"];
+            $obj->username  = $reg["username"];
             //adiciona a variavel de retorno
-            $retorno[] = $obj;
+            $retorno[]      = $obj;
         }
         return $retorno;
     }
-	
+
     public function excluir() {
-        
+
         $sql = "delete from $this->tabela where id = $this->id";
         $retorno = pg_query($sql);
         return $retorno;
@@ -80,30 +80,86 @@ class Usuario
         return $retorno;
     }
 
-    public function retornarunico() {
-        $sql = "Select * FROM $this->tabela where id=$this->id";
+    public function retornarunico($id="") {
+        $sql = "SELECT * FROM $this->tabela WHERE id=$id";
 
         $resultado = pg_query($sql);
         $retorno = NULL;
 
-        $req = pg_fetch_assoc($resultado);
+				while ($reg = pg_fetch_assoc($resultado))
+				{
+					$obj            = new Usuario();
+					$obj->id        = $reg["id"];
+					$obj->nome      = $reg["name_exp"];
+					$obj->sobrenome = $reg["last_name"];
+					$obj->cpf       = $reg["cpf"];
+					$obj->email     = $reg["email"];
+					$obj->senha     = $reg["password"];
+					$obj->username  = $reg["username"];
+					//adiciona a variavel de retorno
+					$retorno[]      = $obj;
+				}
+
+        /*$req = pg_fetch_assoc($resultado);
         if ($req == true) {
-            $obj = new Usuario();
-            $obj->id = $reg["id"];
-            $obj->nome = $reg["nome"];
+            $obj            = new Usuario();
+            $obj->id        = $reg["id"];
+            $obj->nome      = $reg["nome"];
             $obj->sobrenome = $reg["sobrenome"];
-            $obj->cpf = $reg["cpf"];
-            $obj->email = $reg["email"];
-            $obj->senha = $reg["senha"];
-            $obj->username = $reg["username"];
+            $obj->cpf       = $reg["cpf"];
+            $obj->email     = $reg["email"];
+            $obj->senha     = $reg["senha"];
+            $obj->username  = $reg["username"];
             //adiciona a variavel de retorno
-            $retorno[] = $obj;
+            $retorno[]      = $obj;
         } else {
-            $retorno = null;
-        }
+            $retorno        = null;
+        }*/
 
         return $retorno;
     }
+
+	public function editar($id)
+	{
+		$sql = "SELECT * FROM $this->tabela WHERE id = $id";
+		$result = pg_query($sql);
+
+		while ($reg = pg_fetch_assoc($result))
+		{
+			$obj            = new Usuario();
+			$obj->id        = $reg["id"];
+			$obj->nome      = $reg["name_exp"];
+			$obj->sobrenome = $reg["last_name"];
+			$obj->cpf       = $reg["cpf"];
+			$obj->email     = $reg["email"];
+			$obj->senha     = $reg["password"];
+			$obj->username  = $reg["username"];
+			//adiciona a variavel de retorno
+			$retorno     = $obj;
+		}
+		return $retorno;
+	}
+
+	public function login($login='', $senha='')
+	{
+		$sql = "SELECT * FROM $this->tabela WHERE username = '$login' AND password = '$senha' ";
+		$resultado = pg_query($sql);
+		$user = pg_num_rows($resultado);
+
+		if ($user == 1) {
+			session_start();
+			while ($reg = pg_fetch_assoc($resultado)) {
+				$_SESSION['id']        = $reg["id"];
+				$_SESSION['nome']      = $reg["name_exp"];
+				$_SESSION['sobrenome'] = $reg["last_name"];
+				$_SESSION['cpf']       = $reg["cpf"];
+				$_SESSION['email']     = $reg["email"];
+				$_SESSION['senha']     = $reg["password"];
+				$_SESSION['username']  = $reg["username"];
+			}
+		}
+		return $_SESSION;
+	}
 
 }
 ?>

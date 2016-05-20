@@ -1084,6 +1084,7 @@ input,
 button,
 select,
 textarea {
+  height: 34px;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;

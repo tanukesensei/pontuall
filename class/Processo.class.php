@@ -173,6 +173,19 @@ class Processo
         return $retorno;
     }
 
+		public function quantidade_dias($id){ /*Calculo da diferença entre a data da locação e a data de oferta*/
+			$sql = "SELECT id, resignation_date, admission_date, resignation_date - admission_date AS quantidade_dias
+			FROM $this->tabela WHERE id=$id";
+		 	$resultado = pg_query($sql);
+			$linha = pg_fetch_array($resultado);
+			$quantidade_dias = $linha['quantidade_dias'];
+
+			if ($quantidade_dias > 1826) {
+				$quantidade_dias = 1826;
+			}
+			return $quantidade_dias;
+		}
+
 
 
 }

@@ -2,14 +2,10 @@
 
     include '../class/Carrega.class.php';
     session_start();
-    if (isset($_SESSION["username"]))
+    if (empty($_SESSION['id']) && empty($_SESSION['username']))
     {
-         $login = $_SESSION["username"]->username;
-         $id = $_SESSION["username"]->id;
-    } else {
         header("Location:../index.php");
     }
-
 ?>
 
 <!DOCTYPE html>
