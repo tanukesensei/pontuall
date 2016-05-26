@@ -4,6 +4,7 @@ include_once 'BD.class.php';
 
 class Usuario
 {
+	private $id;
 	private $nome;
 	private $sobrenome;
 	private $cpf;
@@ -12,7 +13,7 @@ class Usuario
 	private $username;
 	private $bd;
 	private $tabela;
-	private $id;
+
 
 	public function __construct() {
         $this->bd = new BD();
@@ -34,8 +35,7 @@ class Usuario
     //METODOS
     //BANCO DE DADOS
     public function inserir() {
-
-        $sql = "INSERT INTO $this->tabela (name_exp, last_name, cpf, email, password, username) values
+        $sql = "INSERT INTO $this->tabela (name_exp, last_name, cpf, email, password, username) VALUES
         ('$this->nome','$this->sobrenome','$this->cpf', '$this->email','$this->senha', '$this->username')";
 
         $retorno = pg_query($sql);

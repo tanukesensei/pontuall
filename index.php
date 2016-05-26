@@ -5,31 +5,20 @@ if (isset($_POST["username"])) {
     // instanciar a classe
     $objUsuario = new Usuario();
     //buscamos os dados do post
-
-
     //chamamos o listar passando o complemento (where)
-
     //se retornou null, não achou, caso contrario, o login e senha estão certos.
     if ($objUsuario->login($_POST["username"], sha1($_POST["password"]))) {
         //mensagem de erro
         header("location:php/user_process.php");
-
     } else {
-
         //vai pra logado.
         header("location:php/erro_login.php");
-
     }
-
-
 }
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 
     <meta charset="utf-8">
@@ -62,7 +51,6 @@ if (isset($_POST["username"])) {
 </head>
 
 <body id="page-top">
-
 <?php include "php/topo.html"; ?>
     <header class="bg-calc">
         <div class="header-content">
@@ -156,7 +144,7 @@ if (isset($_POST["username"])) {
                                             <h4 class="modal-title" id="myModalLabel2">Cadastro</h4>
                                         </div>
                                             <form class="form_group" action="php/user_cad.php" method="post">
-                                                    <div class="modal-body">
+                                                <div class="modal-body">
                                                 <label for="nome" class="control-label" >Nome:</label>
                                                     <input class="form-control" id="nome" type="text" name="nome" placeholder="Nome" required="required" autofocus>
 
@@ -174,9 +162,9 @@ if (isset($_POST["username"])) {
 
                                                 <label for="username" class="control-label">Nome de Usuário:</label>
                                                     <input class="form-control" id="username" type="text" name="username" placeholder="Nome de Usuário" required="required" autofocus>
-                                        </div>
+                                                </div>
                                                 <div class="modal-footer">
-                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                     <button type="reset" class="btn btn-default" >Limpar Dados</button>
                                                     <button type="submit" name="cadastrar" value="cadastrar" class="btn btn-primary">Cadastrar</button>
                                                 </div>
@@ -224,7 +212,5 @@ if (isset($_POST["username"])) {
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
-
 </body>
-
 </html>

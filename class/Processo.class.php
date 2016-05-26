@@ -173,9 +173,9 @@ class Processo
         return $retorno;
     }
 
-		public function quantidade_dias($id){ /*Calculo da diferença entre a data da locação e a data de oferta*/
+		public function quantidade_dias($id_processo){ /*Calculo da diferença entre a data da admissão e a data da demissão*/
 			$sql = "SELECT id, resignation_date, admission_date, resignation_date - admission_date AS quantidade_dias
-			FROM $this->tabela WHERE id=$id";
+			FROM $this->tabela WHERE id = $id_processo";
 		 	$resultado = pg_query($sql);
 			$linha = pg_fetch_array($resultado);
 			$quantidade_dias = $linha['quantidade_dias'];
@@ -185,9 +185,5 @@ class Processo
 			}
 			return $quantidade_dias;
 		}
-
-
-
 }
-
  ?>
