@@ -2,6 +2,7 @@
 
     include '../class/Carrega.class.php';
     session_start();
+    $id_perito = $_SESSION['id'];
     if (empty($_SESSION['id']) && empty($_SESSION['username']))
     {
         header("Location:../index.php");
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="../css/creative.css" type="text/css">
 </head>
 <body id="body">
-    <?php include "topo.html"; ?>
+    <?php include "topo.php"; ?>
 
     <section>
         <h3>Cadastro de Processos</h3>
@@ -37,7 +38,7 @@
             <label for="num_processo">Número do Processo:</label>
             <input type="text" name="num_processo" class="form-control" required="required"><br />
 
-            <input type="hidden" name="id_perito" value="<?php echo $id; ?>" >
+            <input type="hidden" name="id_perito" value="<?php echo $id_perito; ?>" >
 
             <label for="vara_trabalho">Vara de Trabalho:</label>
             <input type="text" name="vara_trabalho" class="form-control" required="required"><br />
@@ -72,8 +73,6 @@
             <label for="quebra_mensal">Quebra do Mês:</label>
             <input type="number" name="quebra_mensal" class="form-control" required="required"><br />
 
-            <label for="periodo_calculado">Período Calculado:</label>
-            <input type="text" name="periodo_calculado" class="form-control" required="required"><br />
 
             <input type="submit" name="cadastrar" value="Cadastrar">
 

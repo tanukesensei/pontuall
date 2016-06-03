@@ -111,7 +111,7 @@ CREATE TABLE users (
     id integer NOT NULL,
     name_exp character varying NOT NULL,
     last_name character varying NOT NULL,
-    cpf integer (15) NOT NULL,
+    cpf varchar (15) NOT NULL,
     email character varying NOT NULL,
     password character varying NOT NULL,
     username character varying(50) NOT NULL,

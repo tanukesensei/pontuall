@@ -99,6 +99,7 @@ class Usuario
 					//adiciona a variavel de retorno
 					$retorno[]      = $obj;
 				}
+				return $retorno;
 
         /*$req = pg_fetch_assoc($resultado);
         if ($req == true) {
@@ -116,7 +117,7 @@ class Usuario
             $retorno        = null;
         }*/
 
-        return $retorno;
+
     }
 
 	public function editar($id)
@@ -145,9 +146,10 @@ class Usuario
 		$sql = "SELECT * FROM $this->tabela WHERE username = '$login' AND password = '$senha' ";
 		$resultado = pg_query($sql);
 		$user = pg_num_rows($resultado);
-
+		
 		if ($user == 1) {
 			session_start();
+
 			while ($reg = pg_fetch_assoc($resultado)) {
 				$_SESSION['id']        = $reg["id"];
 				$_SESSION['nome']      = $reg["name_exp"];

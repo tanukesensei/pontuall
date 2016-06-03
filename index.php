@@ -1,22 +1,3 @@
-<?php
-session_start();
-if (isset($_POST["username"])) {
-    include 'class/Carrega.class.php';
-    // instanciar a classe
-    $objUsuario = new Usuario();
-    //buscamos os dados do post
-    //chamamos o listar passando o complemento (where)
-    //se retornou null, não achou, caso contrario, o login e senha estão certos.
-    if ($objUsuario->login($_POST["username"], sha1($_POST["password"]))) {
-        //mensagem de erro
-        header("location:php/user_process.php");
-    } else {
-        //vai pra logado.
-        header("location:php/erro_login.php");
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -51,7 +32,7 @@ if (isset($_POST["username"])) {
 </head>
 
 <body id="page-top">
-<?php include "php/topo.html"; ?>
+<?php include "php/topo.php"; ?>
     <header class="bg-calc">
         <div class="header-content">
             <div class="header-content-inner">

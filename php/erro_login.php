@@ -5,11 +5,11 @@
  	<title>Erro!</title>
  </head>
  <body>
-	<?php 
+	<?php
 
 echo "Erro! Usuário ou senha inválidos, por favor tente novamente.";
 header("location:../index.php");
 
- ?> 	
+ ?>
  </body>
  </html>
