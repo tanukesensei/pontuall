@@ -10,24 +10,31 @@
     $id_perito = $_SESSION['id'];
 
     $_SESSION['id_processo']=$_GET['id'];
-    $id_processo = $_SESSION['idprocesso'];
+    $id_processo = $_SESSION['id_processo'];
     $objProcesso = new Processo();
     $quantidadeDias = $objProcesso->quantidade_dias($id_processo);
 
-    /*$conexao = pg_connect("host=localhost user=postgres password=senha5 dbname=pontuall port=5432")
-                    or die("Erro ao conectar ao servidor");
-    $sql = "SELECT id, resignation_date, admission_date,
-    //Calculo da diferença entre a data da locação e a data de oferta
-    resignation_date - admission_date AS quantidade_dias
-    FROM processes where id='$id'";
-    $resultado = pg_query($sql);
-    $linha=pg_fetch_array($resultado);
-    $quantidadeDias = $linha['quantidade_dias'];
-    if( $quantidadeDias > 1826)
-    {
-       $quantidadeDias=1826;
-    }*/
+    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+    date_default_timezone_set('America/Sao_Paulo');
 
+    // Estes dados provavelmente virão do formulário
+    $data_Inicial = $objProcesso->dataInicial($id_processo);
+    $dataInicial = DateTime::createFromFormat('d/m/Y', $data_Inicial);
+
+
+/*
+    // Transforma as datas do formulário para objetos DateTime: http://php.net/manual/pt_BR/datetime.createfromformat.php
+    $dataInicial = DateTime::createFromFormat('d/m/Y', $data_Inicial);
+    $dataFinal = DateTime::createFromFormat('d/m/Y', $data_Final);
+
+    while ($dataInicial <= $dataFinal) {
+        // A fazer (Luan): executar um SQL INSERT para cada uma destas datas
+        echo $dataInicial->format('d/m/Y l'), '<br>';
+
+        // Adiciona um dia à $dataInicial, servindo para dar continuidade ao loop
+        $dataInicial->add(new DateInterval('P1D'));
+    }
+*/
 
 ?>
 <!DOCTYPE html>
@@ -122,8 +129,9 @@
                 <input type="hidden" name="id_perito[]" value="<?php echo $id_perito; ?>">
 
             <td>
-              <input type="text" name="data_dia[]" ><br>
+              <input type="text" name="data_dia[]" value="<?php echo $dataInicial->format('d/m/Y l'); ?>" >
             </td>
+            <?php $dataInicial->add(new DateInterval('P1D')); ?>
             <td>
               <input type="text" name="entrada_manha[]" placeholder="Entrada da Manhã">
             </td>
