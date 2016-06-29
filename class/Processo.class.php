@@ -170,8 +170,16 @@ class Processo
 			$quantidade_dias = $linha['quantidade_dias'];
 
 			if ($quantidade_dias > 1826) {
-				$quantidade_dias = 1826;
+					$quantidade_dias = 1826;
+
+			} elseif ($quantidade_dias == 0) {
+					$sql = "SELECT id, admission_date, date_distribution, date_distribution - admission_date AS quantidade_dias
+					FROM $this->tabela WHERE id = $id_processo";
+					$resultado = pg_query($sql);
+					$linha = pg_fetch_array($resultado);
+					$quantidade_dias = $linha['quantidade_dias'];
 			}
+
 			return $quantidade_dias;
 		}
 

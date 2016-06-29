@@ -7,15 +7,12 @@
         header("Location:../index.php");
     }
 
-    $id_perito = $_SESSION['id'];
-
-    $_SESSION['id_processo']=$_GET['id'];
-    $id_processo = $_SESSION['id_processo'];
-    $objProcesso = new Processo();
-    $quantidadeDias = $objProcesso->quantidade_dias($id_processo);
-
-    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-    date_default_timezone_set('America/Sao_Paulo');
+    $id_perito               = $_SESSION['id'];
+    $_SESSION['id_processo'] = $_GET['id'];
+    $id_processo             = $_SESSION['id_processo'];
+    $objProcesso             = new Processo();
+    $quantidadeDias          = $objProcesso->quantidade_dias($id_processo);
+    $xablau = $quantidadeDias;
 
     // Estes dados provavelmente virão do formulário
     $data_Inicial = $objProcesso->dataInicial($id_processo);
@@ -127,6 +124,8 @@
                 <input type="hidden" name="id_processo[]" value="<?php echo $id_processo; ?>">
 
                 <input type="hidden" name="id_perito[]" value="<?php echo $id_perito; ?>">
+
+                <input type="hidden" name="num" value="<?php echo $xablau; ?>">
 
             <td>
               <input type="text" name="data_dia[]" value="<?php echo $dataInicial->format('d/m/Y l'); ?>" >

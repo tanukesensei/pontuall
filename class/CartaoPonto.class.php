@@ -47,18 +47,38 @@ class CartaoPonto
 
 	//METODOS DO BANCO DE DADOS
 	public function inserir() {
-		$sql     = "INSERT INTO $this->tabela (id_expert, id_process, date_day, morning_entry, late_entry, night_entry, daily_rest_worked,
-		morning_departure, afternoon_departure, night_departure, nocturnal_rest_worked, extra_hour_daily1, extra_hour_daily2, extra_hour_daily3,
-		night_overtime1, night_overtime2, night_overtime3, total_daily_time, situation) values ('$this->id_perito', '$this->id_processo',
-		'$this->data_dia', '$this->entrada_manha', '$this->entrada_tarde', '$this->entrada_noite', '$this->descanso_diurno_trabalhado',
-		'$this->saida_manha', '$this->saida_tarde', '$this->saida_noite', '$this->descanso_noturno_trabalhado', '$this->hora_extra_diurna',
-		'$this->hora_extra_diurna2', '$this->hora_extra_diurna3', '$this->hora_extra_noturna', '$this->hora_extra_noturna2',
-		'$this->hora_extra_noturna3', '$this->hora_diaria_total','$this->situacao') ";
+		$sql     = "INSERT INTO $this->tabela (id_expert, id_process, date_day, morning_entry, morning_departure, late_entry,
+			afternoon_departure, night_entry, night_departure, daily_rest_worked, nocturnal_rest_worked, situation, extra_hour_daily1,
+			extra_hour_daily2, extra_hour_daily3, night_overtime1, night_overtime2, night_overtime3, total_daily_time
+			) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) ";
+/*
+Deus Esteve aqui e revisou meu código.
+*/
 
-    echo $sql;
-		$retorno = pg_query($sql);
+		$retorno = pg_query_params($sql, array(
+			$this->id_perito ?: null,
+			$this->id_processo ?: null,
+			$this->data_dia ?: null,
+			$this->entrada_manha ?: null,
+			$this->saida_manha ?: null,
+			$this->entrada_tarde ?: null,
+			$this->saida_tarde ?: null,
+			$this->entrada_noite ?: null,
+			$this->saida_noite ?: null,
+			$this->descanso_diurno_trabalhado ?: null,
+			$this->descanso_noturno_trabalhado ?: null,
+			$this->situacao ?: null,
+			$this->hora_extra_diurna ?: null,
+			$this->hora_extra_diurna2 ?: null,
+			$this->hora_extra_diurna3 ?: null,
+			$this->hora_extra_noturna ?: null,
+			$this->hora_extra_noturna2 ?: null,
+			$this->hora_extra_noturna3 ?: null,
+			$this->hora_diaria_total ?: null,
+		));
 		return $retorno;
 	}
+
 
 	public function listar($complemento         = "") {
         $sql                                  = "SELECT * FROM $this->tabela ".
@@ -124,7 +144,7 @@ class CartaoPonto
         $retorno                              = NULL;
 
         $req                                  = pg_fetch_assoc($resultado);
-        if ($req                              =                                       = true) {
+        if ($req                              == true) {
             $obj                              = new CartaoPonto();
             $obj->id                          = $reg["id"];
             $obj->id                          = $reg["id"];
