@@ -176,5 +176,13 @@ Deus Esteve aqui e revisou meu código.
         return $retorno;
     }
 
+		public function somaHoras($id_processo) {
+			$sql = "SELECT morning_entry FROM $this->tabela WHERE id_process = $id_processo";
+
+			$resultado = pg_query($sql);
+			$linhas = pg_fetch_array($resultado);
+
+			return $linhas;
+		}
 }
 ?>

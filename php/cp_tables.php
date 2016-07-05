@@ -188,21 +188,18 @@
           <?php }; ?>
         </tbody>
       </table>
-      <!--<button type="button" class="form-control" name="cadastrar">Cadastrar Valores</button>-->
 
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
       <button type="button" class="form-control" name="atualizar">Atualizar Valores</button>
+      <button type="button" class="form-control"><a href="cp_calculos.php">Teste</a></button>
 
     </form>
   </body>
 
-
            <!-- DataTables JavaScript -->
   <script src="../js/jquery.js"></script>
            <script src="../js/jquery.dataTables.min.js"></script>
-
            <script src="../js/dataTables.bootstrap.min.js"></script>
-
 
            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
            <script>
@@ -212,6 +209,4 @@
                });
            });
            </script>
-
-
 </html>

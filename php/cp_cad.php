@@ -28,15 +28,11 @@ for ($i=0; $i < $contador; $i++) {
    $objCp->hora_extra_noturna3         = $_POST["hora_extra_noturna3"][$i];
    $objCp->hora_diaria_total           = $_POST["hora_diaria_total"][$i];
    $objCp->situacao                    = $_POST["situacao"][$i];
-   echo "<pre>";
-   print_r($objCp);
-   echo "</pre>";
-
-   $objCp->inserir();
+      $objCp->inserir();
 
 }
 
-   //header("Location:cartao_ponto.php?id=$id_processo");
+   header("Location:cartao_ponto.php?id=$id_processo");
 }
 
 ?>
