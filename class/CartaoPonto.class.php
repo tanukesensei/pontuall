@@ -177,12 +177,22 @@ Deus Esteve aqui e revisou meu código.
     }
 
 		public function somaHoras($id_processo) {
-			$sql = "SELECT morning_entry FROM $this->tabela WHERE id_process = $id_processo";
-
+			$sql = "SELECT morning_entry AS h FROM $this->tabela WHERE id_process = $id_processo";
 			$resultado = pg_query($sql);
-			$linhas = pg_fetch_array($resultado);
+			$entM = pg_fetch_assoc($resultado); // Busca as linhas no banco de dados e as retorna em um array.
+			$banana = $entM['h']; // Passa os valores contidos no array para a variavel $banana.
+			$linhas2 = explode(":", $banana); // Explodo a banana e retiro os ":" que separam os numeros.
 
-			return $linhas;
+
+			$sql2 = "SELECT morning_departure AS tetas FROM $this->tabela WHERE id_process = $id_processo";
+			$resultado2 = pg_query($sql2);
+			$saidM = pg_fetch_assoc($resultado2);
+			$bananaboat = $saidM['tetas'];
+			$linhas3 = explode(":", $bananaboat);
+
+			$linhas = array($linhas2, $linhas3); // Envio para as linhas um array formado dos resultados das duas consultas.
+
+			return $linhas; // Retorno em formato de matriz.
 		}
 }
 ?>

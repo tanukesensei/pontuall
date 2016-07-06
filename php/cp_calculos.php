@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<?php
 
-    <meta charset="utf-8">
-    <title>teste</title>
-  </head>
-  <body>
-      <?php
       include '../class/Carrega.class.php';
       session_start();
       if (empty($_SESSION['id']) && empty($_SESSION['username']))
@@ -16,8 +9,8 @@
 
       $objCP = new CartaoPonto();
       $teste = $objCP->somaHoras($id_processo = 1);
+      // Após receber o retorno da função, realizo a soma dos valores de horas, e às envio para CharlieTheUnicorn, que
+      //as exibe mágicamente.
+      echo $CharlieTheUnicorn =  $teste[1][0] - $teste[0][0];
 
-      print_r($teste);  
 ?>
-  </body>
-</html>
