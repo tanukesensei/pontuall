@@ -78,7 +78,7 @@
 
                   if ($lista != null) {
                       foreach ($lista as $processo) {
-                        $exibeProcesso = $linhas."<strong><a href='cartao_ponto.php?id=".$processo->id."'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado." , ".$processo->num_processo."</strong><br />";
+                        $exibeProcesso = $linhas."<strong><a href='cartao_ponto.php?id=".$processo->id."'>".$processo->nome_reclamante." Contra ".$processo->nome_reclamado.", ".$processo->num_processo."</strong><br />";
                         echo $exibeProcesso ;
                       }
                   }

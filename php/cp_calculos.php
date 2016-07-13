@@ -6,11 +6,30 @@
       {
           header("Location:../index.php");
       }
+//pegando ID do processo por GET pra fazer as referencias.
+      $_SESSION['id_processo'] = $_GET['id'];
+      $id_processo = $_SESSION['id_processo'];
 
       $objCP = new CartaoPonto();
-      $teste = $objCP->somaHoras($id_processo = 1);
-      // Após receber o retorno da função, realizo a soma dos valores de horas, e às envio para CharlieTheUnicorn, que
-      //as exibe mágicamente.
-      echo $CharlieTheUnicorn =  $teste[1][0] - $teste[0][0];
+      $objProcesso = new Processo();
+
+      $complemento = "WHERE id = $id_processo";
+      $lista = $objProcesso->listar($complemento);
+      $linhas = "";
+
+      if ($lista !=null) {
+        foreach ($lista as $item) {
+          $exibeItem = $linhas."Reclamante: ".$item->nome_reclamante."<br />Reclamado: ".$item->nome_reclamado."<br />Numero do processo: ".$item->num_processo;
+          echo $exibeItem."<br />";
+        }
+      }
+
+
+      $horasSomadas = "Total de horas Trabalhadas: ".$objCP->somaHoras($id_processo);
+      echo $horasSomadas;
+
+
+
+
 
 ?>

@@ -109,7 +109,7 @@ Deus Esteve aqui e revisou meu código.
             $obj->hora_extra_noturna2         = 		$reg["night_overtime2"];
             $obj->hora_extra_noturna3         = 		$reg["night_overtime3"];
             $obj->hora_diaria_total           = 			$reg["total_daily_time"];
-            $obj->situacao                    = 					$reg["situation"];
+						$obj->situacao                    = 					$reg["situation"];
             //adiciona a variavel de retorno
             $retorno[]                        = $obj;
         }
@@ -138,35 +138,35 @@ Deus Esteve aqui e revisou meu código.
     }
 
     public function retornarunico() {
-        $sql                                  = "Select * FROM $this->tabela where id =$this->id";
+        $sql                                  = "SELECT * FROM $this->tabela WHERE id = $this->id";
+
 
         $resultado                            = pg_query($sql);
         $retorno                              = NULL;
 
-        $req                                  = pg_fetch_assoc($resultado);
-        if ($req                              == true) {
+        $reg                                  = pg_fetch_assoc($resultado);
+        if ($reg                              == true) {
             $obj                              = new CartaoPonto();
-            $obj->id                          = $reg["id"];
-            $obj->id                          = $reg["id"];
-            $obj->id_perito                   = $reg["id_perito"];
-            $obj->id_processo                 = $reg["id_processo"];
-            $obj->data_dia                    = $reg["data_dia"];
-            $obj->entrada_manha               = $reg["entrada_manha"];
-            $obj->entrada_tarde               = $reg["entrada_tarde"];
-            $obj->entrada_noite               = $reg["entrada_noite"];
-            $obj->descanso_diurno_trabalhado  = $reg["descanso_diurno_trabalhado"];
-            $obj->saida_manha                 = $reg["saida_manha"];
-            $obj->saida_tarde                 = $reg["saida_tarde"];
-            $obj->saida_noite                 = $reg["saida_noite"];
-            $obj->descanso_noturno_trabalhado = $reg["descanso_noturno_trabalhado"];
-            $obj->hora_extra_diurna           = $reg["hora_extra_diurna"];
-            $obj->hora_extra_diurna2          = $reg["hora_extra_diurna2"];
-            $obj->hora_extra_diurna3          = $reg["hora_extra_diurna3"];
-            $obj->hora_extra_noturna          = $reg["hora_extra_noturna"];
-            $obj->hora_extra_noturna2         = $reg["hora_extra_noturna2"];
-            $obj->hora_extra_noturna3         = $reg["hora_extra_noturna3"];
-            $obj->hora_diaria_total           = $reg["hora_diaria_total"];
-            $obj->situacao                    = $reg["situacao"];
+						$obj->id                          = 							$reg["id"];
+						$obj->id_perito                   = 		 			$reg["id_expert"];
+						$obj->id_processo                 = 	 			$reg["id_process"];
+						$obj->data_dia                    = 	 				$reg["date_day"];
+						$obj->entrada_manha               = 			$reg["morning_entry"];
+						$obj->entrada_tarde               = 				$reg["late_entry"];
+						$obj->entrada_noite               = 			$reg["night_entry"];
+						$obj->descanso_diurno_trabalhado  = 	$reg["daily_rest_worked"];
+						$obj->saida_manha                 = 	 			$reg["morning_departure"];
+						$obj->saida_tarde                 = 	 			$reg["afternoon_departure"];
+						$obj->saida_noite                 = 	 			$reg["night_departure"];
+						$obj->descanso_noturno_trabalhado = $reg["nocturnal_rest_worked"];
+						$obj->hora_extra_diurna           = 			$reg["extra_hour_daily1"];
+						$obj->hora_extra_diurna2          = 			$reg["extra_hour_daily2"];
+						$obj->hora_extra_diurna3          = 			$reg["extra_hour_daily3"];
+						$obj->hora_extra_noturna          = 			$reg["night_overtime1"];
+						$obj->hora_extra_noturna2         = 		$reg["night_overtime2"];
+						$obj->hora_extra_noturna3         = 		$reg["night_overtime3"];
+						$obj->hora_diaria_total           = 			$reg["total_daily_time"];
+						$obj->situacao                    = 					$reg["situation"];
             //adiciona a variavel de retorno
             $retorno[]                        = $obj;
         } else {
@@ -177,22 +177,60 @@ Deus Esteve aqui e revisou meu código.
     }
 
 		public function somaHoras($id_processo) {
-			$sql = "SELECT morning_entry AS h FROM $this->tabela WHERE id_process = $id_processo";
+
+			$sql = "SELECT morning_entry AS a, morning_departure AS b, late_entry AS c, afternoon_departure AS d, night_entry AS e,
+			night_departure AS f, daily_rest_worked AS g, nocturnal_rest_worked AS h FROM $this->tabela WHERE id_process = $id_processo";
 			$resultado = pg_query($sql);
-			$entM = pg_fetch_assoc($resultado); // Busca as linhas no banco de dados e as retorna em um array.
-			$banana = $entM['h']; // Passa os valores contidos no array para a variavel $banana.
-			$linhas2 = explode(":", $banana); // Explodo a banana e retiro os ":" que separam os numeros.
 
-
-			$sql2 = "SELECT morning_departure AS tetas FROM $this->tabela WHERE id_process = $id_processo";
-			$resultado2 = pg_query($sql2);
-			$saidM = pg_fetch_assoc($resultado2);
-			$bananaboat = $saidM['tetas'];
-			$linhas3 = explode(":", $bananaboat);
-
-			$linhas = array($linhas2, $linhas3); // Envio para as linhas um array formado dos resultados das duas consultas.
-
-			return $linhas; // Retorno em formato de matriz.
+			$somaSegundos = 0;
+			while ($row = pg_fetch_assoc($resultado)){
+				$objCartaoPonto = new CartaoPonto();
+				$somaSegundos += $objCartaoPonto->calculaTempo($row['a'], $row['b']) + $objCartaoPonto->calculaTempo($row['c'], $row['d']) +
+				$objCartaoPonto->calculaTempo($row['e'], $row['f']) + $objCartaoPonto->calculaTempo($row['g'], $row['h']);
+			}
+			return $objCartaoPonto->formataHora($somaSegundos);
 		}
+
+		function calculaTempo($hora_inicial, $hora_final){
+			if ($hora_inicial==NULL && $hora_final==NULL) {
+				return 0;
+			}
+
+			$i = 1;
+			$tempo_total = array();
+
+			$tempos = array($hora_final, $hora_inicial);
+
+			foreach($tempos as $tempo) {
+
+				$segundos = 0;
+
+				list($h, $m, $s) = explode(':', $tempo);
+
+				$segundos += $h * 3600;
+				$segundos += $m * 60;
+				$segundos += $s;
+
+				$tempo_total[$i] = $segundos;
+
+				$i++;
+			}
+			$segundos = $tempo_total[1] - $tempo_total[2];
+			return $segundos;
+
+	}
+
+	function formataHora($segundos) {
+		$horas = floor($segundos / 3600);
+		$segundos -= $horas * 3600;
+		$minutos = str_pad((floor($segundos / 60)), 2, '0', STR_PAD_LEFT);
+		$segundos -= $minutos * 60;
+		$segundos = str_pad($segundos, 2, '0', STR_PAD_LEFT);
+
+		return "$horas:$minutos:$segundos";
+	}
+
+
+
 }
 ?>

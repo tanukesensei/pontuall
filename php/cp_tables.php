@@ -191,7 +191,7 @@
 
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
       <button type="button" class="form-control" name="atualizar">Atualizar Valores</button>
-      <button type="button" class="form-control"><a href="cp_calculos.php">Teste</a></button>
+      <button type="button" class="form-control"><a href="cp_calculos.php?id=<?php echo $id_processo; ?>">Cálcular</a></button>
 
     </form>
   </body>
