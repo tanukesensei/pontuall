@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top" style="color:red">Pontuall</a>
+            <a class="navbar-brand page-scroll" href="#page-top">Pontuall</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,10 +16,27 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <!-- Button trigger modal -->
-                        <button class="Login" data-toggle="modal" data-target="#myModal">
+                        <a href="#login" class="page-scroll" data-toggle="modal" data-target="#myModal" style="color:#00b261">
                             Login
-                        </button>
-                        <!-- Modal -->
+                        </a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about" style="color:black">Sobre</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services" style="color:black">Serviços</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact" style="color:black">Contato</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+    <!-- Modal -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -47,19 +64,4 @@
                             <!-- /.modal-dialog -->
                         </div>
                         <!-- /.modal -->
-                </li>
-                <li>
-                    <a class="page-scroll" href="#about">Sobre</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Serviços</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contato</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+

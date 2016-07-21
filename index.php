@@ -9,18 +9,18 @@
     <title>Pontuall - Plataforma de Cartão Ponto Web</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="home/css/bootstrap.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="home/font-awesome/css/font-awesome.min.css" type="text/css">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="home/css/creative.css" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,9 +113,10 @@
             <div class="call-to-action">
                 <h2>Comece a utilizar Agora!</h2>
                  <!-- Button trigger modal -->
-                            <button class="btn btn-default btn-xl wow tada" data-toggle="modal" data-target="#myModal2">
+                 <hr class="light">
+                            <a href="#" class="btn btn-default btn-xl sr-button wow tada" data-toggle="modal" data-target="#myModal2">
                                 Cadastro!
-                            </button>
+                            </a>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -170,7 +171,7 @@
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
                     <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>(53) 84xx-xx32</p>
+                    <p>(53) 8426-3832</p>
                 </div>
                 <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
@@ -181,17 +182,17 @@
     </section>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="home/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="home/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
+    <script src="home/js/jquery.easing.min.js"></script>
+    <script src="home/js/jquery.fittext.js"></script>
+    <script src="home/js/wow.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/creative.js"></script>
+    <script src="home/js/creative.js"></script>
 </body>
 </html>
