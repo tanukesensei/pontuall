@@ -160,6 +160,7 @@
                 <option value="atividade">Em Atividade</option>
                 <option value="feriadoT">Feriado Trabalhado</option>
                 <option value="repousoT">Repouso Trabalhado</option>
+                <option value="atestadoM">Atestado Médico</option>
                 <option value="ferias">Férias</option>
               </select>
             </td>
