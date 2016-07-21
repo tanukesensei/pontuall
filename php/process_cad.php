@@ -47,6 +47,7 @@ if(isset($_POST["cadastrar"])) {
 	$objProcesso->tipo_processo  = $_POST["tipo_processo"];
 	$objProcesso->quebra_semanal = $_POST["quebra_semanal"];
 	$objProcesso->quebra_mensal  = $_POST["quebra_mensal"];
+	$objProcesso->hora_dia = $_POST["hora_dia"];
 	$objProcesso->inserir();
 	echo "<script> alert('Cadastro Efetuado com Sucesso!'); </script>";
 	//header("Location:user_process.php");

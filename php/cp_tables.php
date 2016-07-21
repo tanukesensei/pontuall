@@ -64,25 +64,25 @@
         <thead>
           <tr class="gradeX">
             <th>
-              <label for="data_dia">data do dia:</label>
+              <label for="data_dia">data dia:</label>
             </th>
             <th>
-               <label for="entrada_manha">Entrada da Manhã:</label>
+               <label for="entrada_manha">Entrada Manhã:</label>
             </th>
             <th>
-              <label for="saida_manha">Saída da Manhã:</label>
+              <label for="saida_manha">Saída Manhã:</label>
             </th>
             <th>
-              <label for="entrada_tarde">Entrada da Tarde:</label>
+              <label for="entrada_tarde">Entrada Tarde:</label>
             </th>
             <th>
-              <label for="saida_tarde">Saída da Tarde:</label>
+              <label for="saida_tarde">Saída Tarde:</label>
             </th>
             <th>
-              <label for="entrada_noite">Entrada da Noite:</label>
+              <label for="entrada_noite">Entrada Noite:</label>
             </th>
             <th>
-              <label for="saida_noite">Saída da Noite:</label>
+              <label for="saida_noite">Saída Noite:</label>
             </th>
             <th>
               <label for="descanso_diurno_trabalhado">Descanso Diurno:</label>
@@ -132,22 +132,22 @@
             </td>
             <?php $dataInicial->add(new DateInterval('P1D')); ?>
             <td>
-              <input type="text" name="entrada_manha[]" placeholder="Entrada da Manhã">
+              <input type="text" name="entrada_manha[]" placeholder="Entrada Manhã">
             </td>
             <td>
-              <input type="text" name="saida_manha[]" placeholder="Saída da Manhã">
+              <input type="text" name="saida_manha[]" placeholder="Saída Manhã">
             </td>
             <td>
-              <input type="text" name="entrada_tarde[]" placeholder="Entrada da Tarde">
+              <input type="text" name="entrada_tarde[]" placeholder="Entrada Tarde">
             </td>
             <td>
-              <input type="text" name="saida_tarde[]" placeholder="Saída da Tarde">
+              <input type="text" name="saida_tarde[]" placeholder="Saída Tarde">
             </td>
             <td>
               <input type="text" name="entrada_noite[]" placeholder="Entrada Noite">
             </td>
             <td>
-              <input type="text" name="saida_noite[]" placeholder="Saída da Noite">
+              <input type="text" name="saida_noite[]" placeholder="Saída Noite">
             </td>
             <td>
               <input type="text" name="descanso_diurno_trabalhado[]" placeholder="Descanso Diurno">

@@ -29,57 +29,65 @@
     <?php include "topo.php"; ?>
 
     <section>
-        <h3>Cadastro de Processos</h3>
-	<article>
-	    <form action="process_cad.php" method="post">
-        <div class="col-lg-6">
+      <h3>Cadastro de Processos</h3>
+    	<article>
+    	    <form action="process_cad.php" method="post">
+            <div class="col-lg-6">
 
 
-            <label for="num_processo">Número do Processo:</label>
-            <input type="text" name="num_processo" class="form-control" required="required"><br />
+                <label for="num_processo">Número do Processo:</label>
+                <input type="text" name="num_processo" class="form-control" required="required"><br />
 
-            <input type="hidden" name="id_perito" value="<?php echo $id_perito; ?>" >
+                <input type="hidden" name="id_perito" value="<?php echo $id_perito; ?>" >
 
-            <label for="vara_trabalho">Vara de Trabalho:</label>
-            <input type="text" name="vara_trabalho" class="form-control" required="required"><br />
+                <label for="vara_trabalho">Vara de Trabalho:</label>
+                <input type="text" name="vara_trabalho" class="form-control" required="required"><br />
 
-            <label for="nome_reclamado">Nome do Reclamado:</label>
-            <input type="text" name="nome_reclamado" class="form-control" required="required"><br />
+                <label for="nome_reclamado">Nome do Reclamado:</label>
+                <input type="text" name="nome_reclamado" class="form-control" required="required"><br />
 
-            <label for="nome_reclamante">Nome do Reclamante:</label>
-            <input type="text" name="nome_reclamante" class="form-control" required="required"><br />
+                <label for="nome_reclamante">Nome do Reclamante:</label>
+                <input type="text" name="nome_reclamante" class="form-control" required="required"><br />
 
-            <label for="horas_trabalhadas">Horas Trabalhadas:</label>
-            <input type="text" name="horas_trabalhadas" class="form-control"><br />
+                <label for="horas_trabalhadas">Horas Trabalhadas:</label>
+                <input type="text" name="horas_trabalhadas" class="form-control"><br />
 
-            <label for="data_distribuicao">Data da Distribuição:</label>
-            <input type="text" id="date" name="data_distribuicao" class="form-control"><br />
+                <label for="data_distribuicao">Data da Distribuição:</label>
+                <input type="text" id="date" name="data_distribuicao" class="form-control"><br />
 
-            <label for="data_prescricao">Data da Prescrição: (pode ser em branco)</label>
-            <input type="text" id="date2" name="data_prescricao" class="form-control"><br />
+                <label for="data_prescricao">Data da Prescrição: (pode ser em branco)</label>
+                <input type="text" id="date2" name="data_prescricao" class="form-control"><br />
 
-            <label for="data_admissao">Data de Admissão:</label>
-            <input type="text" id="date3" name="data_admissao" class="form-control"><br />
+                <label for="data_admissao">Data de Admissão:</label>
+                <input type="text" id="date3" name="data_admissao" class="form-control"><br />
 
-            <label for="data_demissao">Data de Demissão: (pode ser em branco)</label>
-            <input type="text" id="date4" name="data_demissao" class="form-control"><br />
+                <label for="data_demissao">Data de Demissão: (pode ser em branco)</label>
+                <input type="text" id="date4" name="data_demissao" class="form-control"><br />
 
-            <label for="tipo_processo">Tipo de Processo:</label>
-            <input type="text" name="tipo_processo" class="form-control" required="required"><br />
+                <label for="tipo_processo">Tipo de Processo:</label>
+                <input type="text" name="tipo_processo" class="form-control" required="required"><br />
 
-            <label for="quebra_semanal">Quebra da Semana:</label>
-            <input type="text" name="quebra_semanal" class="form-control" required="required"><br />
+                <label for="quebra_semanal">Quebra da Semana:</label>
+                <input type="text" name="quebra_semanal" class="form-control" required="required"><br />
 
-            <label for="quebra_mensal">Quebra do Mês:</label>
-            <input type="number" name="quebra_mensal" class="form-control" required="required"><br />
+                <label for="quebra_mensal">Quebra do Mês:</label>
+                <input type="number" name="quebra_mensal" class="form-control" required="required"><br />
+
+                <label for="hora_dia">Horas Diárias Trabalhadas:</label>
+                <select class="form-control" name="hora_dia">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select><br />
 
 
-            <input type="submit" name="cadastrar" value="Cadastrar">
+                <input type="submit" name="cadastrar" value="Cadastrar">
 
-            <button type="button" name="button" value="Voltar"><a href="user_process.php">Voltar</a></button>
-        </form>
-        </div>
-	</article>
+                <button type="button" name="button" value="Voltar"><a href="user_process.php">Voltar</a></button>
+            </form>
+            </div>
+    	</article>
     </section>
 </body>
 <script src="../js/jquery.js"></script>
