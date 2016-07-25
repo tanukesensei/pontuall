@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="novo" href="process_new.php">Novo Processo <?php $novo; ?> </a>
+                        <a class="novo" href="process_new.php"> Novo Processo </a>
                     </li>
                     <li>
                         <a class="editar" href="user_edit.php">Usuário: <?php echo $_SESSION['username']; ?> </a>
