@@ -34,7 +34,8 @@
 
 
 <body id="calc">
-	 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+     <?php include "../admin/top_menu.php"; ?>
+	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
