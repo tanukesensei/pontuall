@@ -54,6 +54,7 @@ class CartaoPonto
 /*
 Deus Esteve aqui e revisou meu código.
 */
+echo $sql;
 
 		$retorno = pg_query_params($sql, array(
 			$this->id_perito ?: null,
@@ -191,45 +192,50 @@ Deus Esteve aqui e revisou meu código.
 			return $objCartaoPonto->formataHora($somaSegundos);
 		}
 
-		function calculaTempo($hora_inicial, $hora_final){
-			if ($hora_inicial==NULL && $hora_final==NULL) {
-				return 0;
+			function calculaTempo($hora_inicial, $hora_final){
+				if ($hora_inicial==NULL && $hora_final==NULL) {
+					return 0;
+				}
+
+				$i = 1;
+				$tempo_total = array();
+
+				$tempos = array($hora_final, $hora_inicial);
+
+				foreach($tempos as $tempo) {
+
+					$segundos = 0;
+
+					list($h, $m, $s) = explode(':', $tempo);
+
+					$segundos += $h * 3600;
+					$segundos += $m * 60;
+					$segundos += $s;
+
+					$tempo_total[$i] = $segundos;
+
+					$i++;
+				}
+				$segundos = $tempo_total[1] - $tempo_total[2];
+				return $segundos;
+
 			}
 
-			$i = 1;
-			$tempo_total = array();
+			function formataHora($segundos) {
+				$horas = floor($segundos / 3600);
+				$segundos -= $horas * 3600;
+				$minutos = str_pad((floor($segundos / 60)), 2, '0', STR_PAD_LEFT);
+				$segundos -= $minutos * 60;
+				$segundos = str_pad($segundos, 2, '0', STR_PAD_LEFT);
 
-			$tempos = array($hora_final, $hora_inicial);
-
-			foreach($tempos as $tempo) {
-
-				$segundos = 0;
-
-				list($h, $m, $s) = explode(':', $tempo);
-
-				$segundos += $h * 3600;
-				$segundos += $m * 60;
-				$segundos += $s;
-
-				$tempo_total[$i] = $segundos;
-
-				$i++;
+				return "$horas:$minutos:$segundos";
 			}
-			$segundos = $tempo_total[1] - $tempo_total[2];
-			return $segundos;
 
-	}
-
-	function formataHora($segundos) {
-		$horas = floor($segundos / 3600);
-		$segundos -= $horas * 3600;
-		$minutos = str_pad((floor($segundos / 60)), 2, '0', STR_PAD_LEFT);
-		$segundos -= $minutos * 60;
-		$segundos = str_pad($segundos, 2, '0', STR_PAD_LEFT);
-
-		return "$horas:$minutos:$segundos";
-	}
-
+			public function buscarCartaoPonto($id_processo){
+				$sql = "SELECT * FROM $this->tabela WHERE id_process = $id_processo";
+				$resultado = pg_query($sql);
+				return $resultado;
+							}
 
 
 }

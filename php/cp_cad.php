@@ -1,9 +1,13 @@
 <?php
-
+print_r($_POST['situacao']);
+print_r($_POST['id_perito']);
+print_r($_POST['id_processo']);
+print_r($_POST['data_dia']);
 include '../class/Carrega.class.php';
 
 $contador = $_POST["num"];
-
+echo "num".$contador;
+$id_processo=$_POST["id_processo"][0];
 if (isset($_POST["cadastrar"], $_POST["id_perito"], $_POST["id_processo"])) {
 
 for ($i=0; $i < $contador; $i++) {
@@ -28,11 +32,12 @@ for ($i=0; $i < $contador; $i++) {
    $objCp->hora_extra_noturna3         = $_POST["hora_extra_noturna3"][$i];
    $objCp->hora_diaria_total           = $_POST["hora_diaria_total"][$i];
    $objCp->situacao                    = $_POST["situacao"][$i];
-      $objCp->inserir();
+   $objCp->inserir();
+      var_dump($objCp);
 
 }
 
-   header("Location:cartao_ponto.php?id=$id_processo");
+  // header("Location:cartao_ponto.php?id=$id_processo");
 }
 
 ?>

@@ -52,10 +52,10 @@
      <link rel="stylesheet" href="../css/creative.css" type="text/css">
 
      <!-- DataTables CSS -->
-     <link href="../css/dataTables.bootstrap.css" rel="stylesheet">
+<!-- <link href="../css/dataTables.bootstrap.css" rel="stylesheet"> -->
 
      <!-- DataTables Responsive CSS -->
-     <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- <link href="../css/jquery.dataTables.min.css" rel="stylesheet"> -->
 
   </head>
   <body>
@@ -118,7 +118,41 @@
         </thead>
 
         <tbody>
-          <?php for ($i=0; $i < $quantidadeDias; $i++) { ?> <!-- Valor Original há ser utilizado no projeto <?php /*for ($i=0; $i < 1826; $i++) { */?> -->
+          <?php
+                // tentativa fazer um resgate de valores no banco e alteração de botões no front.
+
+          $objCp = new CartaoPonto();
+          $resultado = $objCp->buscarCartaoPonto($id_processo);
+          $num_linhas=pg_num_rows($resultado);
+
+          if(pg_num_rows($resultado)>0){
+
+            $status_processo="atualizar";
+            $linhas=pg_fetch_all($resultado);
+            $data_banco=array();
+
+              foreach($linhas as $linha)
+              {
+                 $data_banco[] = $linha['date_day'];
+
+              }
+
+          }
+          else {
+                  $status_processo="cadastrar";
+
+          }
+
+           for ($i=0; $i < $quantidadeDias; $i++) { ?> <!-- Valor Original há ser utilizado no projeto <?php /*for ($i=0; $i < 1826; $i++) { */
+             if($status_processo=='atualizar')
+             {
+                 $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
+                 if ($key==$i)
+                 {
+                      $entrada_manha=$linhas[$i]['morning_entry'];
+                 }
+              }
+             ?> -->
           <tr class="gradeY">
 
                 <input type="hidden" name="id_processo[]" value="<?php echo $id_processo; ?>">
@@ -132,7 +166,7 @@
             </td>
             <?php $dataInicial->add(new DateInterval('P1D')); ?>
             <td>
-              <input type="text" name="entrada_manha[]" placeholder="Entrada Manhã">
+              <input type="text" name="entrada_manha[]" value="<?php echo (isset($entrada_manha) ?$entrada_manha:""); ?>"placeholder="Entrada Manhã">
             </td>
             <td>
               <input type="text" name="saida_manha[]" placeholder="Saída Manhã">
@@ -156,7 +190,7 @@
               <input type="text" name="descanso_noturno_trabalhado[]" placeholder="Descanso Noturno">
             </td>
             <td>
-              <select class="form-control" name="situacao">
+              <select class="form-control" name="situacao[]">
                 <option value="atividade">Em Atividade</option>
                 <option value="feriadoT">Feriado Trabalhado</option>
                 <option value="repousoT">Repouso Trabalhado</option>
@@ -189,25 +223,38 @@
           <?php }; ?>
         </tbody>
       </table>
-
+<?php
+  if($status_processo=='cadastrar')
+  {
+    ?>
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
+    <?php
+  }
+  else {
+    # code...
+
+     ?>
       <button type="button" class="form-control" name="atualizar">Atualizar Valores</button>
+    <?php
+
+   }
+    ?>
       <button type="button" class="form-control"><a href="cp_calculos.php?id=<?php echo $id_processo; ?>">Cálcular</a></button>
 
     </form>
   </body>
 
            <!-- DataTables JavaScript -->
-  <script src="../js/jquery.js"></script>
+          <!-- <script src="../js/jquery.js"></script>
            <script src="../js/jquery.dataTables.min.js"></script>
-           <script src="../js/dataTables.bootstrap.min.js"></script>
+           <script src="../js/dataTables.bootstrap.min.js"></script> -->
 
            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-           <script>
+      <!--     <script>
            $(document).ready(function() {
                $('#dataTables-example').DataTable({
                        responsive: true
                });
            });
-           </script>
+         </script> -->
 </html>

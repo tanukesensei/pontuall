@@ -199,15 +199,5 @@ class Processo
 			return $result_dt_ini;
 		}
 
-		public function dataFinal($id_processo){/*retora a data de demissão.*/
-			$sql = "SELECT resignation_date FROM $this->tabela WHERE id = $id_processo";
-			$dt_fin = pg_query($sql);
-			$linha = pg_fetch_array($dt_fin);
-			$result_dt_fin = date('d/m/Y', strtotime($linha['resignation_date']));
-
-			return $result_dt_fin;
-		}
-
-
 }
  ?>
