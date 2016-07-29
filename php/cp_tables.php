@@ -150,6 +150,11 @@
                  if ($key==$i)
                  {
                       $entrada_manha=$linhas[$i]['morning_entry'];
+                      $saida_manha = $linhas[$i]['morning_departure'];
+                      $entrada_tarde=$linhas[$i]['late_entry'];
+                      $saida_tarde=$linhas[$i]['afternoon_departure'];
+                      $entrada_noite = $linhas[$i]['night_entry'];
+                      $saida_noite = $linhas[$i]['night_departure'];
                  }
               }
              ?> -->
@@ -166,22 +171,22 @@
             </td>
             <?php $dataInicial->add(new DateInterval('P1D')); ?>
             <td>
-              <input type="text" name="entrada_manha[]" value="<?php echo (isset($entrada_manha) ?$entrada_manha:""); ?>"placeholder="Entrada Manhã">
+              <input type="text" name="entrada_manha[]" value="<?php echo (isset($entrada_manha) ?$entrada_manha:""); ?>" placeholder="Entrada Manhã">
             </td>
             <td>
-              <input type="text" name="saida_manha[]" placeholder="Saída Manhã">
+              <input type="text" name="saida_manha[]" value="<?php echo (isset($saida_manha) ?$saida_manha:""); ?>" placeholder="Saída Manhã">
             </td>
             <td>
-              <input type="text" name="entrada_tarde[]" placeholder="Entrada Tarde">
+              <input type="text" name="entrada_tarde[]" value="<?php echo (isset($entrada_tarde) ?$entrada_tarde:""); ?>" placeholder="Entrada Tarde">
             </td>
             <td>
-              <input type="text" name="saida_tarde[]" placeholder="Saída Tarde">
+              <input type="text" name="saida_tarde[]" value="<?php echo (isset($saida_tarde) ?$saida_tarde:""); ?>" placeholder="Saída Tarde">
             </td>
             <td>
-              <input type="text" name="entrada_noite[]" placeholder="Entrada Noite">
+              <input type="text" name="entrada_noite[]" value="<?php echo (isset($entrada_noite) ?$entrada_noite:""); ?>" placeholder="Entrada Noite">
             </td>
             <td>
-              <input type="text" name="saida_noite[]" placeholder="Saída Noite">
+              <input type="text" name="saida_noite[]" value="<?php echo (isset($saida_noite) ?$saida_noite:""); ?>" placeholder="Saída Noite">
             </td>
             <td>
               <input type="text" name="descanso_diurno_trabalhado[]" placeholder="Descanso Diurno">
