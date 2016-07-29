@@ -54,7 +54,6 @@ class CartaoPonto
 /*
 Deus Esteve aqui e revisou meu código.
 */
-echo $sql;
 
 		$retorno = pg_query_params($sql, array(
 			$this->id_perito ?: null,
@@ -231,12 +230,11 @@ echo $sql;
 				return "$horas:$minutos:$segundos";
 			}
 
-			public function buscarCartaoPonto($id_processo){
+			public function buscarCartaoPonto($id_processo){/*Função que busca se existe o cartão ponto. */
 				$sql = "SELECT * FROM $this->tabela WHERE id_process = $id_processo";
 				$resultado = pg_query($sql);
 				return $resultado;
-							}
-
+			}
 
 }
 ?>

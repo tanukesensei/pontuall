@@ -1,12 +1,7 @@
 <?php
-print_r($_POST['situacao']);
-print_r($_POST['id_perito']);
-print_r($_POST['id_processo']);
-print_r($_POST['data_dia']);
 include '../class/Carrega.class.php';
 
 $contador = $_POST["num"];
-echo "num".$contador;
 $id_processo=$_POST["id_processo"][0];
 if (isset($_POST["cadastrar"], $_POST["id_perito"], $_POST["id_processo"])) {
 
@@ -15,7 +10,7 @@ for ($i=0; $i < $contador; $i++) {
    $objCp                              = new CartaoPonto();
    $objCp->id_perito                   = $_POST["id_perito"][$i];
    $objCp->id_processo                 = $_POST["id_processo"][$i];
-   $objCp->data_dia                    = $_POST["data_dia"][$i]; // ""
+   $objCp->data_dia                    = $_POST["data_dia"][$i];
    $objCp->entrada_manha               = $_POST["entrada_manha"][$i];
    $objCp->entrada_tarde               = $_POST["entrada_tarde"][$i];
    $objCp->entrada_noite               = $_POST["entrada_noite"][$i];
@@ -33,11 +28,8 @@ for ($i=0; $i < $contador; $i++) {
    $objCp->hora_diaria_total           = $_POST["hora_diaria_total"][$i];
    $objCp->situacao                    = $_POST["situacao"][$i];
    $objCp->inserir();
-      var_dump($objCp);
-
-}
-
-  // header("Location:cartao_ponto.php?id=$id_processo");
+  }
+   header("Location:cartao_ponto.php?id=$id_processo");
 }
 
 ?>

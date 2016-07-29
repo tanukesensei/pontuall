@@ -122,33 +122,33 @@
                 // tentativa fazer um resgate de valores no banco e alteração de botões no front.
 
           $objCp = new CartaoPonto();
-          $resultado = $objCp->buscarCartaoPonto($id_processo);
-          $num_linhas=pg_num_rows($resultado);
+          $resultado = $objCp->buscarCartaoPonto($id_processo); //Retorna se existe um cartão ponto para este processo.
+          $num_linhas=pg_num_rows($resultado); //Transforma o resultado em um numero de linhas.
 
           if(pg_num_rows($resultado)>0){
-
+            /* Caso exista o cartão ponto, o status do processo muda para atualizar, caso contrario muda para cadastrar.*/
             $status_processo="atualizar";
-            $linhas=pg_fetch_all($resultado);
-            $data_banco=array();
+            $linhas=pg_fetch_all($resultado); // O resultado transformado em um array chamado linhas.
+            $data_banco=array(); // É criado um novo array chamado data_banco.
 
               foreach($linhas as $linha)
               {
-                 $data_banco[] = $linha['date_day'];
-
+                 $data_banco[] = $linha['date_day']; //data_banco recebe as datas dos dias que estão cadastradas no banco.
               }
-
           }
           else {
                   $status_processo="cadastrar";
-
           }
 
            for ($i=0; $i < $quantidadeDias; $i++) { ?> <!-- Valor Original há ser utilizado no projeto <?php /*for ($i=0; $i < 1826; $i++) { */
              if($status_processo=='atualizar')
              {
+             /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
+             já gerados e salvos através do $data_banco, e serão guardados na $key. */
                  $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
                  if ($key==$i)
                  {
+                 /*Caso a $key comparada seja igual, os valores do banco serão exibidos. */
                       $entrada_manha=$linhas[$i]['morning_entry'];
                       $saida_manha = $linhas[$i]['morning_departure'];
                       $entrada_tarde=$linhas[$i]['late_entry'];
@@ -234,18 +234,14 @@
     ?>
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
     <?php
-  }
-  else {
-    # code...
-
+  } else {
      ?>
       <button type="button" class="form-control" name="atualizar">Atualizar Valores</button>
     <?php
-
    }
     ?>
       <button type="button" class="form-control"><a href="cp_calculos.php?id=<?php echo $id_processo; ?>">Cálcular</a></button>
-
+      <button type="button" class="form-control"><a href="user_process.php">Voltar</a></button>
     </form>
   </body>
 
