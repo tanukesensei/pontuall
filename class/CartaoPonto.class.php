@@ -18,13 +18,13 @@ class CartaoPonto
 	private $descanso_diurno_trabalhado; //daily_rest_worked
 	private $descanso_noturno_trabalhado;//nocturnal_rest_worked
 	private $situacao;					//situation
-	private $hora_extra_diurna;			//extra_hour_daily1
-	private $hora_extra_diurna2;			//extra_hour_daily2
-	private $hora_extra_diurna3;			//extra_hour_daily3
-	private $hora_extra_noturna;			//night_overtime1
-	private $hora_extra_noturna2;		//night_overtime2
-	private $hora_extra_noturna3;		//night_overtime3
-	private $hora_diaria_total;			//total_daily_time
+	private $hora_extra_diurna;			//extra_hour_daily1 //retirar essa linha daqui e do banco.
+	private $hora_extra_diurna2;			//extra_hour_daily2 //retirar essa linha daqui e do banco.
+	private $hora_extra_diurna3;			//extra_hour_daily3//retirar essa linha daqui e do banco.
+	private $hora_extra_noturna;			//night_overtime1//retirar essa linha daqui e do banco.
+	private $hora_extra_noturna2;		//night_overtime2//retirar essa linha daqui e do banco.
+	private $hora_extra_noturna3;		//night_overtime3//retirar essa linha daqui e do banco.
+	private $hora_diaria_total;			//total_daily_time//retirar essa linha daqui e do banco.
 	private $bd;
 	private $tabela;
 

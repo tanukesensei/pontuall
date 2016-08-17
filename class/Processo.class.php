@@ -7,8 +7,8 @@ class Processo
 
 							//NOME NO BANCO
 	private $id;								//id
-	private $num_processo;	//num_process - num_processo
 	private $id_perito;			//id_expert - id_perito
+	private $num_processo;	//num_process - num_processo
 	private $vara_trabalho;		//labour_stick - vara_trabalho
 	private $nome_reclamado;	//name_claimed - nome_reclamado
 	private $nome_reclamante;	//claimants_name - nome_reclamante
