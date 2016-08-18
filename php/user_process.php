@@ -6,6 +6,7 @@
     {
         header("Location:../index.php");
     }
+    $id_perito = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -35,7 +36,7 @@
                 <div class="exibe_processo">
                 <?php
                     $objProcesso = new Processo();
-                    $complemento = "ORDER BY id DESC";
+                    $complemento = "WHERE id_expert = $id_perito ORDER BY id DESC";
                     $lista = $objProcesso->listar($complemento);
                     $linhas = "";
 
@@ -53,7 +54,7 @@
      </div>
    </div>
    <footer>
-     
+
    </footer>
      <!-- jQuery -->
     <script src="../admin/js/jquery.js"></script>
