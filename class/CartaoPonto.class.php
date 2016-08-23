@@ -123,7 +123,7 @@ Deus Esteve aqui e revisou meu código.
         return $retorno;
     }
 
-    public function atualizar() {
+    public function atualizar() { #modificar essa para maneiramente
         $retorno              = false;
         $sql                  = "update $this->tabela set date_day ='$this->data_dia', morning_entry ='$this->entrada_manha',
         late_entry            ='$this->entrada_tarde', night_entry ='$this->entrada_noite', daily_rest_worked ='$this->descanso_diurno_trabalhado',

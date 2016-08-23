@@ -59,7 +59,7 @@
 
   </head>
   <body>
-    <form class="form-control" action="cp_cad.php" method="post">
+    <form class="form-control" action=<?php echo $action; ?> method="post">
       <table class="table table-striped table-bordered table-hover table-condensed" id="dataTables-example">
         <thead>
           <tr class="gradeX">
@@ -138,11 +138,13 @@
           }
           else {
                   $status_processo="cadastrar";
+                  $action = "cp_cad.php";
           }
 
            for ($i=0; $i < $quantidadeDias; $i++) { ?> <!-- Valor Original há ser utilizado no projeto <?php /*for ($i=0; $i < 1826; $i++) { */
              if($status_processo=='atualizar')
              {
+             $action = "cp_atualiza.php";
              /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
              já gerados e salvos através do $data_banco, e serão guardados na $key. */
                  $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
@@ -236,7 +238,7 @@
     <?php
   } else {
      ?>
-      <button type="button" class="form-control" name="atualizar">Atualizar Valores</button>
+      <button type="submit" class="form-control" name="atualizar">Atualizar Valores</button>
     <?php
    }
     ?>
