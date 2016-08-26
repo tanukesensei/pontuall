@@ -57,9 +57,35 @@
      <!-- DataTables Responsive CSS -->
     <!-- <link href="../css/jquery.dataTables.min.css" rel="stylesheet"> -->
 
+
   </head>
   <body>
-    <form class="form-control" action=<?php echo $action; ?> method="post">
+    <?php
+          // tentativa fazer um resgate de valores no banco e alteração de botões no front.
+
+    $objCp = new CartaoPonto();
+    $resultado = $objCp->buscarCartaoPonto($id_processo); //Retorna se existe um cartão ponto para este processo.
+    $num_linhas=pg_num_rows($resultado); //Transforma o resultado em um numero de linhas.
+
+    if(pg_num_rows($resultado)>0){
+      /* Caso exista o cartão ponto, o status do processo muda para atualizar, caso contrario muda para cadastrar.*/
+      $status_processo="atualizar";
+      $linhas=pg_fetch_all($resultado); // O resultado transformado em um array chamado linhas.
+      $data_banco=array(); // É criado um novo array chamado data_banco.
+
+        foreach($linhas as $linha)
+        {
+           $data_banco[] = $linha['date_day']; //data_banco recebe as datas dos dias que estão cadastradas no banco.
+        }
+    }
+    else {
+            $status_processo="cadastrar";
+            $action = "cp_cad.php";
+    }
+
+
+       ?>
+    <form class="form-control" action="<?php echo $action; ?>" method="post">
       <table class="table table-striped table-bordered table-hover table-condensed" id="dataTables-example">
         <thead>
           <tr class="gradeX">
@@ -118,50 +144,27 @@
         </thead>
 
         <tbody>
-          <?php
-                // tentativa fazer um resgate de valores no banco e alteração de botões no front.
-
-          $objCp = new CartaoPonto();
-          $resultado = $objCp->buscarCartaoPonto($id_processo); //Retorna se existe um cartão ponto para este processo.
-          $num_linhas=pg_num_rows($resultado); //Transforma o resultado em um numero de linhas.
-
-          if(pg_num_rows($resultado)>0){
-            /* Caso exista o cartão ponto, o status do processo muda para atualizar, caso contrario muda para cadastrar.*/
-            $status_processo="atualizar";
-            $linhas=pg_fetch_all($resultado); // O resultado transformado em um array chamado linhas.
-            $data_banco=array(); // É criado um novo array chamado data_banco.
-
-              foreach($linhas as $linha)
-              {
-                 $data_banco[] = $linha['date_day']; //data_banco recebe as datas dos dias que estão cadastradas no banco.
-              }
-          }
-          else {
-                  $status_processo="cadastrar";
-                  $action = "cp_cad.php";
-          }
-
-           for ($i=0; $i < $quantidadeDias; $i++) { ?> <!-- Valor Original há ser utilizado no projeto <?php /*for ($i=0; $i < 1826; $i++) { */
-             if($status_processo=='atualizar')
-             {
-             $action = "cp_atualiza.php";
-             /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
-             já gerados e salvos através do $data_banco, e serão guardados na $key. */
-                 $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
-                 if ($key==$i)
-                 {
-                 /*Caso a $key comparada seja igual, os valores do banco serão exibidos. */
-                      $entrada_manha=$linhas[$i]['morning_entry'];
-                      $saida_manha = $linhas[$i]['morning_departure'];
-                      $entrada_tarde=$linhas[$i]['late_entry'];
-                      $saida_tarde=$linhas[$i]['afternoon_departure'];
-                      $entrada_noite = $linhas[$i]['night_entry'];
-                      $saida_noite = $linhas[$i]['night_departure'];
-                 }
-              }
-             ?> -->
           <tr class="gradeY">
+            <?php for ($i=0; $i < $quantidadeDias; $i++) { /*Valor Original há ser utilizado no projeto*/ /*for ($i=0; $i < 1826; $i++) */
 
+              if($status_processo=='atualizar'){
+              var_dump($action = "cp_atualiza.php");
+              /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
+              já gerados e salvos através do $data_banco, e serão guardados na $key. */
+                  $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
+                  if ($key==$i)
+                  {
+                  /*Caso a $key comparada seja igual, os valores do banco serão exibidos. */
+                       $entrada_manha=$linhas[$i]['morning_entry'];
+                       $saida_manha = $linhas[$i]['morning_departure'];
+                       $entrada_tarde=$linhas[$i]['late_entry'];
+                       $saida_tarde=$linhas[$i]['afternoon_departure'];
+                       $entrada_noite = $linhas[$i]['night_entry'];
+                       $saida_noite = $linhas[$i]['night_departure'];
+                  }
+               }
+
+              ?>
                 <input type="hidden" name="id_processo[]" value="<?php echo $id_processo; ?>">
 
                 <input type="hidden" name="id_perito[]" value="<?php echo $id_perito; ?>">
