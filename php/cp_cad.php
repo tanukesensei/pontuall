@@ -5,9 +5,11 @@ $contador = $_POST["num"];
 $id_processo=$_POST["id_processo"][0];
 if (isset($_POST["cadastrar"], $_POST["id_perito"], $_POST["id_processo"])) {
 
-for ($i=0; $i < $contador; $i++) {
+  for ($i=0; $i < $contador; $i++) {
 
    $objCp                              = new CartaoPonto();
+
+   $objCp->id                          = $_POST["id"][$i];
    $objCp->id_perito                   = $_POST["id_perito"][$i];
    $objCp->id_processo                 = $_POST["id_processo"][$i];
    $objCp->data_dia                    = $_POST["data_dia"][$i];

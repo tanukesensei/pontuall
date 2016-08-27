@@ -80,9 +80,13 @@
     }
     else {
             $status_processo="cadastrar";
-            $action = "cp_cad.php";
     }
 
+    if ($status_processo == "cadastrar") {
+      $action = "cp_cad.php";
+    } else {
+      $action = "cp_atualiza.php";
+    }
 
        ?>
     <form class="form-control" action="<?php echo $action; ?>" method="post">
@@ -148,7 +152,6 @@
             <?php for ($i=0; $i < $quantidadeDias; $i++) { /*Valor Original há ser utilizado no projeto*/ /*for ($i=0; $i < 1826; $i++) */
 
               if($status_processo=='atualizar'){
-              var_dump($action = "cp_atualiza.php");
               /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
               já gerados e salvos através do $data_banco, e serão guardados na $key. */
                   $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);

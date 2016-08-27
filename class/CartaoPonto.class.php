@@ -123,16 +123,27 @@ Deus Esteve aqui e revisou meu código.
         return $retorno;
     }
 
-    public function atualizar() { #modificar essa para maneiramente
+    public function atualizar() { #modificar essa parada maneiramente
         $retorno              = false;
-        $sql                  = "update $this->tabela set date_day ='$this->data_dia', morning_entry ='$this->entrada_manha',
-        late_entry            ='$this->entrada_tarde', night_entry ='$this->entrada_noite', daily_rest_worked ='$this->descanso_diurno_trabalhado',
-        morning_departure     ='$this->saida_manha', afternoon_departure ='$this->saida_tarde', night_departure ='$this->saida_noite',
-        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado', extra_hour_daily1 ='$this->hora_extra_diurna',
-        extra_hour_daily2     ='$this->hora_extra_diurna2', extra_hour_daily3 ='$this->hora_extra_diurna3',
-        night_overtime1       ='$this->hora_extra_noturna', night_overtime2 ='$this->hora_extra_noturna2', night_overtime3 ='$this->hora_extra_noturna3',
-        total_daily_time      ='$this->hora_diaria_total', situation ='$this->situacao' where
-                       id     = $this->id";
+        $sql = "update $this->tabela set date_day ='$this->data_dia',
+				morning_entry ='$this->entrada_manha',
+				morning_departure ='$this->saida_manha',
+				late_entry ='$this->entrada_tarde',
+				afternoon_departure ='$this->saida_tarde',
+				night_entry ='$this->entrada_noite',
+				night_departure ='$this->saida_noite',
+				daily_rest_worked ='$this->descanso_diurno_trabalhado',
+        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado',
+				situation ='$this->situacao',
+				extra_hour_daily1 ='$this->hora_extra_diurna',
+        extra_hour_daily2 ='$this->hora_extra_diurna2',
+				extra_hour_daily3 ='$this->hora_extra_diurna3',
+        night_overtime1 ='$this->hora_extra_noturna',
+				night_overtime2 ='$this->hora_extra_noturna2',
+				night_overtime3 ='$this->hora_extra_noturna3',
+        total_daily_time ='$this->hora_diaria_total'
+				where
+        id = $this->id";
         $retorno              = pg_query($sql);
         return $retorno;
     }
