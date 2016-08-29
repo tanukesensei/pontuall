@@ -243,8 +243,8 @@ SELECT pg_catalog.setval('processes_id_seq', 5, true);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO users VALUES (1, 'Luan', 'Vitola', '02351001028', 'luanvs@hotmail.com', 'd0302fc5147d39ec8db3eb006b8aea9dc86ba124', 'luan');
 INSERT INTO users VALUES (2, 'Sandra', 'Vitola', '00000000000', 'svitola@terra.com.br', '803474753a226643ed8997bf836f7873d7a16996', 'sian');
+INSERT INTO users VALUES (1, 'Luan', 'Vitola', '02351001028', 'luanvs@hotmail.com', 'd0302fc5147d39ec8db3eb006b8aea9dc86ba124', 'luan');
 
 
 --
