@@ -168,6 +168,8 @@
                }
 
               ?>
+
+
                 <input type="hidden" name="id_processo[]" value="<?php echo $id_processo; ?>">
 
                 <input type="hidden" name="id_perito[]" value="<?php echo $id_perito; ?>">
@@ -236,18 +238,11 @@
           <?php }; ?>
         </tbody>
       </table>
-<?php
-  if($status_processo=='cadastrar')
-  {
-    ?>
+<?php if($status_processo=='cadastrar'){ ?>
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
-    <?php
-  } else {
-     ?>
+<?php } else { ?>
       <button type="submit" class="form-control" name="atualizar">Atualizar Valores</button>
-    <?php
-   }
-    ?>
+<?php } ?>
       <button type="button" class="form-control"><a href="cp_calculos.php?id=<?php echo $id_processo; ?>">Cálcular</a></button>
       <button type="button" class="form-control"><a href="user_process.php">Voltar</a></button>
     </form>
