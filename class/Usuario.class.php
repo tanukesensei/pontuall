@@ -73,10 +73,15 @@ class Usuario
     }
 
     public function atualizar() {
-        $retorno = false;
-        $sql = "update $this->tabela set name_exp ='$this->nome', last_name ='$this->sobrenome', cpf ='$this->cpf', email ='$this->email', password ='$this->senha', username ='$this->username' where
-                       id = $this->id";
-        $retorno = pg_query($sql);
+        $retorno  = false;
+        $sql      = "update $this->tabela set name_exp ='$this->nome',
+				last_name ='$this->sobrenome',
+				cpf       ='$this->cpf',
+				email     ='$this->email',
+				password  ='$this->senha',
+				username  ='$this->username' where
+				id        = $this->id";
+        $retorno  = pg_query($sql);
         return $retorno;
     }
 

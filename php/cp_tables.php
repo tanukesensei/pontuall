@@ -86,6 +86,7 @@
       $action = "cp_cad.php";
     } else {
       $action = "cp_atualiza.php";
+      $id = $objCp->buscarID($id_processo);
     }
 
        ?>
@@ -165,6 +166,7 @@
                        $entrada_noite = $linhas[$i]['night_entry'];
                        $saida_noite = $linhas[$i]['night_departure'];
                   }
+                    echo "<input type='hidden' name='id[]' value='$id'>";
                }
 
               ?>

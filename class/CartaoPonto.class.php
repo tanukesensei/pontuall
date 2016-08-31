@@ -125,25 +125,25 @@ Deus Esteve aqui e revisou meu código.
 
     public function atualizar() { #modificar essa parada maneiramente
         $retorno              = false;
-        $sql = "update $this->tabela set date_day ='$this->data_dia',
-				morning_entry ='$this->entrada_manha',
-				morning_departure ='$this->saida_manha',
-				late_entry ='$this->entrada_tarde',
-				afternoon_departure ='$this->saida_tarde',
-				night_entry ='$this->entrada_noite',
-				night_departure ='$this->saida_noite',
-				daily_rest_worked ='$this->descanso_diurno_trabalhado',
-        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado',
-				situation ='$this->situacao',
-				extra_hour_daily1 ='$this->hora_extra_diurna',
-        extra_hour_daily2 ='$this->hora_extra_diurna2',
-				extra_hour_daily3 ='$this->hora_extra_diurna3',
-        night_overtime1 ='$this->hora_extra_noturna',
-				night_overtime2 ='$this->hora_extra_noturna2',
-				night_overtime3 ='$this->hora_extra_noturna3',
-        total_daily_time ='$this->hora_diaria_total'
-				where
-        id = $this->id";
+        $sql                  = "update $this->tabela set
+				date_day              ='$this->data_dia' ?: null,
+				morning_entry         ='$this->entrada_manha' ?: null,
+				morning_departure     ='$this->saida_manha' ?: null,
+				late_entry            ='$this->entrada_tarde' ?: null,
+				afternoon_departure   ='$this->saida_tarde' ?: null,
+				night_entry           ='$this->entrada_noite' ?: null,
+				night_departure       ='$this->saida_noite' ?: null,
+				daily_rest_worked     ='$this->descanso_diurno_trabalhado' ?: null,
+        nocturnal_rest_worked ='$this->descanso_noturno_trabalhado' ?: null,
+				situation             ='$this->situacao' ?: null,
+				extra_hour_daily1     ='$this->hora_extra_diurna' ?: null,
+        extra_hour_daily2     ='$this->hora_extra_diurna2' ?: null,
+				extra_hour_daily3     ='$this->hora_extra_diurna3' ?: null,
+        night_overtime1       ='$this->hora_extra_noturna' ?: null,
+				night_overtime2       ='$this->hora_extra_noturna2' ?: null,
+				night_overtime3       ='$this->hora_extra_noturna3' ?: null,
+        total_daily_time      ='$this->hora_diaria_total'  ?: null	where
+        id                    = $this->id";
         $retorno              = pg_query($sql);
         return $retorno;
     }
@@ -245,6 +245,14 @@ Deus Esteve aqui e revisou meu código.
 				$sql = "SELECT * FROM $this->tabela WHERE id_process = $id_processo";
 				$resultado = pg_query($sql);
 				return $resultado;
+			}
+
+			public function buscarID($id_processo){
+				$sql = "SELECT id FROM pointcards WHERE id_process = $id_processo";
+				$resultado = pg_query($sql);
+				$linhas = pg_fetch_array($resultado);
+				$id = $linhas['id'];
+				return $id;
 			}
 
 }
