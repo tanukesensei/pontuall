@@ -34,8 +34,9 @@
         $objCp->hora_extra_noturna3         = $_POST["hora_extra_noturna3"][$i];
         $objCp->hora_diaria_total           = $_POST["hora_diaria_total"][$i];
         $objCp->situacao                    = $_POST["situacao"][$i];
-        var_dump($objCp);
         $objCp->atualizar();
+
+        header("Location:cartao_ponto.php?id=$id_processo");
   }
 }
   else
