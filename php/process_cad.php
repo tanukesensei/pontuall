@@ -6,8 +6,10 @@
 </head>
 <body>
 <?php
-    include '../class/Carrega.class.php';
-    session_start();
+		ini_set('session.save_path', '../../tmp');
+		session_start();
+		include '../class/Carrega.class.php';
+
     if (empty($_SESSION['id']) && empty($_SESSION['username']))
     {
         header("Location:../index.php");
