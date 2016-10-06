@@ -25,7 +25,6 @@ if(isset($_POST["cadastrar"])) {
 	$objProcesso->vara_trabalho     = $_POST["vara_trabalho"];
 	$objProcesso->nome_reclamado    = $_POST["nome_reclamado"];
 	$objProcesso->nome_reclamante   = $_POST["nome_reclamante"];
-	$objProcesso->horas_trabalhadas = $_POST["horas_trabalhadas"];
 	$objProcesso->data_distribuicao = $_POST['data_distribuicao'];
 	$objProcesso->data_admissao     = $_POST['data_admissao'];
 

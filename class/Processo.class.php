@@ -48,34 +48,34 @@ class Processo
 	public function inserir() {
 		if ($this->data_prescricao!=null && $this->data_demissao!=null)
 		{
-		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
 			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
 			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
-			 '$this->horas_trabalhadas', '$this->data_distribuicao','$this->data_prescricao','$this->data_demissao', '$this->data_admissao',
+				 '$this->data_distribuicao','$this->data_prescricao','$this->data_demissao', '$this->data_admissao',
 			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
 		 }
 		 	elseif ($this->data_prescricao==null && $this->data_demissao==null)
 				 {
-					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
 			 			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
 			 			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
-			 			 '$this->horas_trabalhadas', '$this->data_distribuicao', NULL, NULL, '$this->data_admissao',
+			 			 '$this->data_distribuicao', NULL, NULL, '$this->data_admissao',
 			 			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
 				 }
 				 elseif ($this->data_prescricao==null)
 					 {
-					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
 						 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
 						 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
-						 '$this->horas_trabalhadas', '$this->data_distribuicao', NULL,'$this->data_demissao', '$this->data_admissao',
+						 '$this->data_distribuicao', NULL,'$this->data_demissao', '$this->data_admissao',
 						 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
 					 }
 					 elseif ($this->data_demissao==null)
 						 {
-							 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name, worked_hours,
+							 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
 								 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
 								 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
-								 '$this->horas_trabalhadas', '$this->data_distribuicao','$this->data_prescricao', NULL, '$this->data_admissao',
+								 '$this->data_distribuicao','$this->data_prescricao', NULL, '$this->data_admissao',
 								 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
 						 }
 
@@ -100,7 +100,6 @@ class Processo
             $obj->vara_trabalho     = 	 $reg["labour_stick"];
             $obj->nome_reclamado    = 	 $reg["name_claimed"];
             $obj->nome_reclamante   = $reg["claimants_name"];
-            $obj->horas_trabalhadas = $reg["worked_hours"];
             $obj->data_distribuicao = $reg["date_distribution"];
 						$obj->data_demissao     = 		$reg["resignation_date"];
 						$obj->data_admissao     = 	 $reg["admission_date"];
@@ -125,7 +124,7 @@ class Processo
      public function atualizar() {
         $retorno = false;
         $sql = "update $this->tabela set labour_stick ='$this->vara_trabalho', name_claimed ='$this->nome_reclamado',
-        claimants_name ='$this->nome_reclamante', worked_hours ='$this->horas_trabalhadas', date_distribution ='$this->data_distribuicao',
+        claimants_name ='$this->nome_reclamante', date_distribution ='$this->data_distribuicao',
 				resignation_date ='$this->data_demissao', admission_date ='$this->data_admissao', type_process ='$this->tipo_processo',
 				weekly_break ='$this->quebra_semanal', monthly_breakdown ='$this->quebra_mensal',	prescription_date = '$this->data_prescricao',
 				day_hour = '$this->hora_dia'
@@ -149,7 +148,6 @@ class Processo
             $obj->vara_trabalho = 	  $reg["vara_trabalho"];
             $obj->nome_reclamado = 	  $reg["nome_reclamado"];
             $obj->nome_reclamante =   $reg["nome_reclamante"];
-            $obj->horas_trabalhadas = $reg["horas_trabalhadas"];
             $obj->data_distribuicao = $reg["data_distribuicao"];
 						$obj->data_demissao = 		$reg["data_demissao"];
             $obj->data_admissao = 	  $reg["data_admissao"];
@@ -165,6 +163,10 @@ class Processo
 
         return $retorno;
     }
+
+
+		/*SOMENTE CRUD ACIMA, SOMENTE FUNÇÕES ESPECÍFICAS ABAIXO*/
+
 
 		public function quantidade_dias($id_processo){ /*Calculo da diferença entre a data da admissão e a data da demissão*/
 			$sql = "SELECT id, resignation_date, admission_date, resignation_date - admission_date AS quantidade_dias

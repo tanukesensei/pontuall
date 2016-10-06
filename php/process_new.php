@@ -50,9 +50,6 @@
                 <label for="nome_reclamante">Nome do Reclamante:</label>
                 <input type="text" name="nome_reclamante" class="form-control" required="required"><br />
 
-                <label for="horas_trabalhadas">Horas Trabalhadas:</label>
-                <input type="text" name="horas_trabalhadas" class="form-control"><br />
-
                 <label for="data_distribuicao">Data da Distribuição:</label>
                 <input type="text" id="date" name="data_distribuicao" class="form-control"><br />
 
@@ -82,6 +79,45 @@
                   <option value="12">12:00</option>
                 </select><br />
 
+                <label for="segunda-feira">Segunda - Feira</label>
+                <select class="form-control" name="segunda">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+
+                <label for="terça-feira">Terça - Feira</label>
+                <select class="form-control" name="terça">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+
+                <label for="quarta-feira">Quarta - Feira</label>
+                <select class="form-control" name="quarta">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+
+                <label for="quinta-feira">Quinta - Feira</label>
+                <select class="form-control" name="quinta">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+
+                <label for="sexta-feira">Sexta - Feira</label>
+                <select class="form-control" name="sexta">
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
 
                 <input type="submit" name="cadastrar" value="Cadastrar">
 
