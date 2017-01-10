@@ -77,7 +77,8 @@
                   <option value="8">08:00</option>
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
-                </select><br />
+                </select>
+                <br />
 
                 <label for="segunda-feira">Segunda - Feira</label>
                 <select class="form-control" name="segunda">
@@ -86,14 +87,16 @@
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
                 </select>
+                <br />
 
-                <label for="terça-feira">Terça - Feira</label>
-                <select class="form-control" name="terça">
+                <label for="terca-feira">Terça - Feira</label>
+                <select class="form-control" name="terca">
                   <option value="6">06:00</option>
                   <option value="8">08:00</option>
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
                 </select>
+                <br />
 
                 <label for="quarta-feira">Quarta - Feira</label>
                 <select class="form-control" name="quarta">
@@ -102,6 +105,7 @@
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
                 </select>
+                <br />
 
                 <label for="quinta-feira">Quinta - Feira</label>
                 <select class="form-control" name="quinta">
@@ -110,6 +114,7 @@
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
                 </select>
+                <br />
 
                 <label for="sexta-feira">Sexta - Feira</label>
                 <select class="form-control" name="sexta">
@@ -118,6 +123,27 @@
                   <option value="10">10:00</option>
                   <option value="12">12:00</option>
                 </select>
+                <br />
+
+                <label for="sabado">Sábado</label>
+                <select class="form-control" name="sabado">
+                  <option value="4">04:00</option>
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+                <br />
+
+                <label for="domingo">Domingo</label>
+                <select class="form-control" name="domingo">
+                  <option value="dnt">Dia não Trabalhado</option>
+                  <option value="6">06:00</option>
+                  <option value="8">08:00</option>
+                  <option value="10">10:00</option>
+                  <option value="12">12:00</option>
+                </select>
+                <br />
 
                 <input type="submit" name="cadastrar" value="Cadastrar">
 

@@ -22,6 +22,13 @@ class Processo
 	private $quebra_semanal;	//weekly_break - quebra_semanal
 	private $quebra_mensal;		//monthly_breakdown - quebra_mensal
 	private $hora_dia; 				//day_hour
+	private $segunda_feira; 	//monday
+	private $terca_feira;			//tuesday
+	private $quarta_feira;  	//wednesday
+	private $quinta_feira; 		//thursday
+	private $sexta_feira;			//friday
+	private $sabado;					//saturday
+	private $domingo;					//sunday
 
 	private $bd;
 	private $tabela;					//tabela
@@ -45,6 +52,8 @@ class Processo
 	}
 
 	//METODOS DO BANCO DE DADOS
+
+	/*COLOCAR AS COLUNAS DE DIAS DA SEMANA NO BANCO DE DADOS E NA FUNÇÃO ABAIXO.*/
 	public function inserir() {
 		if ($this->data_prescricao!=null && $this->data_demissao!=null)
 		{
