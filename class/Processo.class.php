@@ -58,34 +58,34 @@ class Processo
 		if ($this->data_prescricao!=null && $this->data_demissao!=null)
 		{
 		$sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
-			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
+			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
 				 '$this->data_distribuicao','$this->data_prescricao','$this->data_demissao', '$this->data_admissao',
-			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
+			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia', '$this->segunda_feira', '$this->terca_feira', '$this->quarta_feira', '$this->quinta_feira', '$this->sexta_feira', '$this->sabado', '$this->domingo')";
 		 }
 		 	elseif ($this->data_prescricao==null && $this->data_demissao==null)
 				 {
 					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
-			 			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
+			 			 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 			 			 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
 			 			 '$this->data_distribuicao', NULL, NULL, '$this->data_admissao',
-			 			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
+			 			 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia', '$this->segunda_feira', '$this->terca_feira', '$this->quarta_feira', '$this->quinta_feira', '$this->sexta_feira', '$this->sabado', '$this->domingo')";
 				 }
 				 elseif ($this->data_prescricao==null)
 					 {
 					 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
-						 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
+						 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 						 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
 						 '$this->data_distribuicao', NULL,'$this->data_demissao', '$this->data_admissao',
-						 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
+						 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia', '$this->segunda_feira', '$this->terca_feira', '$this->quarta_feira', '$this->quinta_feira', '$this->sexta_feira', '$this->sabado', '$this->domingo')";
 					 }
 					 elseif ($this->data_demissao==null)
 						 {
 							 $sql = "INSERT INTO $this->tabela (num_process, id_expert, labour_stick, name_claimed, claimants_name,
-								 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour)
+								 date_distribution, prescription_date, resignation_date, admission_date, type_process, weekly_break, monthly_breakdown, day_hour, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 								 VALUES ('$this->num_processo', '$this->id_perito', '$this->vara_trabalho', '$this->nome_reclamado', '$this->nome_reclamante',
 								 '$this->data_distribuicao','$this->data_prescricao', NULL, '$this->data_admissao',
-								 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia')";
+								 '$this->tipo_processo', '$this->quebra_semanal', '$this->quebra_mensal', '$this->hora_dia', '$this->segunda_feira', '$this->terca_feira', '$this->quarta_feira', '$this->quinta_feira', '$this->sexta_feira', '$this->sabado', '$this->domingo')";
 						 }
 
 
@@ -117,6 +117,13 @@ class Processo
             $obj->quebra_mensal     = 	 $reg["monthly_breakdown"];
 						$obj->data_prescricao   = 	$reg["prescription_date"];
 						$obj->hora_dia          = $reg["day_hour"];
+						$obj->segunda_feira 		= $reg["monday"];
+						$obj->terca_feira = $reg["tuesday"];
+						$obj->quarta_feira = $reg["wednesday"];
+						$obj->quinta_feira = $reg["thursday"];
+						$obj->sexta_feira = $reg["friday"];
+						$obj->sabado = $reg["saturday"];
+						$obj->domingo = $reg["monday"];
             //adiciona a variavel de retorno
             $retorno[] = $obj;
         }
