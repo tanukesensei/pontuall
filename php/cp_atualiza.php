@@ -15,9 +15,9 @@
       for ($i=0; $i < $contador; $i++) {
 
         $objCp                              = new CartaoPonto();
-        $objCp->id                          = $_POST["id"][$i];
-        $objCp->id_perito                   = $_POST["id_perito"][$i];
-        $objCp->id_processo                 = $_POST["id_processo"][$i];
+        //$objCp->id                          = $_POST["id"][$i];
+        //$objCp->id_perito                   = $_POST["id_perito"][$i];
+        //$objCp->id_processo                 = $_POST["id_processo"][$i];
         $objCp->data_dia                    = $_POST["data_dia"][$i];
         $objCp->entrada_manha               = $_POST["entrada_manha"][$i];
         $objCp->entrada_tarde               = $_POST["entrada_tarde"][$i];

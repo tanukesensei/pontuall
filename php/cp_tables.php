@@ -117,34 +117,7 @@
               <label for="saida_noite">Saída Noite:</label>
             </th>
             <th>
-              <label for="descanso_diurno_trabalhado">Descanso Diurno:</label>
-            </th>
-            <th>
-              <label for="descanso_noturno_trabalhado">Descanso Noturno:</label>
-            </th>
-            <th>
               <label for="situacao">Situação:</label>
-            </th>
-            <th>
-              <label for="hora_extra_diurna">Hora Extra Diurna:</label>
-            </th>
-            <th>
-              <label for="hora_extra_diurna2">Hora Extra Diurna 2:</label>
-            </th>
-            <th>
-              <label for="hora_extra_diurna3">Hora Extra Diurna 3:</label>
-            </th>
-            <th>
-              <label for="hora_extra_noturna">Hora Extra Noturna:</label>
-            </th>
-            <th>
-              <label for="hora_extra_noturna2">Hora Extra Noturna 2:</label>
-            </th>
-            <th>
-              <label for="hora_extra_noturna3">Hora Extra Noturna 3:</label>
-            </th>
-            <th>
-              <label for="hora_diaria_total">Total de Horas Diárias:</label>
             </th>
           </tr>
         </thead>
@@ -152,13 +125,15 @@
         <tbody>
           <tr class="gradeY">
             <?php for ($i=0; $i < $quantidadeDias; $i++) { /*Valor Original há ser utilizado no projeto*/ /*for ($i=0; $i < 1826; $i++) */
-
               if($status_processo=='atualizar'){
               /*caso o status do processo esteja para atualizar,será feito uma busco no banco comparando os valores
               já gerados e salvos através do $data_banco, e serão guardados na $key. */
                   $key = array_search($dataInicial->format('d/m/Y l'),$data_banco);
+                  echo $data_banco[$i];
+
                   if ($key==$i)
                   {
+                    echo $i;
                   /*Caso a $key comparada seja igual, os valores do banco serão exibidos. */
                        $entrada_manha=$linhas[$i]['morning_entry'];
                        $saida_manha = $linhas[$i]['morning_departure'];
@@ -166,6 +141,13 @@
                        $saida_tarde=$linhas[$i]['afternoon_departure'];
                        $entrada_noite = $linhas[$i]['night_entry'];
                        $saida_noite = $linhas[$i]['night_departure'];
+                  }else {
+                    $entrada_manha=$linhas[$i][NULL];
+                    $saida_manha = $linhas[$i][NULL];
+                    $entrada_tarde=$linhas[$i][NULL];
+                    $saida_tarde=$linhas[$i][NULL];
+                    $entrada_noite = $linhas[$i][NULL];
+                    $saida_noite = $linhas[$i][NULL];
                   }
                     echo "<input type='hidden' name='id[]' value='$id'>";
                }
@@ -202,12 +184,6 @@
               <input type="text" name="saida_noite[]" value="<?php echo (isset($saida_noite) ?$saida_noite:""); ?>" placeholder="Saída Noite">
             </td>
             <td>
-              <input type="text" name="descanso_diurno_trabalhado[]" placeholder="Descanso Diurno">
-            </td>
-            <td>
-              <input type="text" name="descanso_noturno_trabalhado[]" placeholder="Descanso Noturno">
-            </td>
-            <td>
               <select class="form-control" name="situacao[]">
                 <option value="atividade">Em Atividade</option>
                 <option value="feriadoT">Feriado Trabalhado</option>
@@ -216,35 +192,14 @@
                 <option value="ferias">Férias</option>
               </select>
             </td>
-            <td>
-              <input type="text" name="hora_extra_diurna[]" placeholder="Hora Extra Diurna">
-            </td>
-            <td>
-              <input type="text" name="hora_extra_diurna2[]" placeholder="Hora Extra Diurna 2">
-            </td>
-            <td>
-              <input type="text" name="hora_extra_diurna3[]" placeholder="Hora Extra Diurna 3">
-            </td>
-            <td>
-              <input type="text" name="hora_extra_noturna[]" placeholder="Hora Extra Noturna">
-            </td>
-            <td>
-              <input type="text" name="hora_extra_noturna2[]" placeholder="Hora Extra Noturna 2">
-            </td>
-            <td>
-              <input type="text" name="hora_extra_noturna3[]" placeholder="Hora Extra Noturna 3">
-            </td>
-            <td>
-              <input type="text" name="hora_diaria_total[]" placeholder="Total de Horas Diárias">
-            </td>
           </tr>
-          <?php }; ?>
+          <?php }; /*O FOR ESTÁ FECHANDO AQUI.*/?>
         </tbody>
       </table>
 <?php if($status_processo=='cadastrar'){ ?>
       <input type="submit" class="form-control" name="cadastrar" value="Cadastrar Valores" >
 <?php } else { ?>
-      <button type="submit" class="form-control" name="atualizar">Atualizar Valores</button>
+      <input type="submit" class="form-control" name="atualizar" value="Atualizar Valores">
 <?php } ?>
       <button type="button" class="form-control"><a href="cp_calculos.php?id=<?php echo $id_processo; ?>">Cálcular</a></button>
       <button type="button" class="form-control"><a href="user_process.php">Voltar</a></button>

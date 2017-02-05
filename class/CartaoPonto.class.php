@@ -16,18 +16,22 @@ class CartaoPonto
 	private $saida_tarde;				//afternoon_departure
 	private $entrada_noite;				//night_entry
 	private $saida_noite;				//night_departure
-	private $descanso_diurno_trabalhado; //daily_rest_worked
-	private $descanso_noturno_trabalhado;//nocturnal_rest_worked
 	private $situacao;					//situation
-	private $hora_extra_diurna;			//extra_hour_daily1 //retirar essa linha daqui e do banco.
-	private $hora_extra_diurna2;			//extra_hour_daily2 //retirar essa linha daqui e do banco.
-	private $hora_extra_diurna3;			//extra_hour_daily3//retirar essa linha daqui e do banco.
-	private $hora_extra_noturna;			//night_overtime1//retirar essa linha daqui e do banco.
-	private $hora_extra_noturna2;		//night_overtime2//retirar essa linha daqui e do banco.
-	private $hora_extra_noturna3;		//night_overtime3//retirar essa linha daqui e do banco.
 	private $hora_diaria_total;			//total_daily_time//retirar essa linha daqui e do banco.
 	private $bd;
 	private $tabela;
+
+/* NÃO EXCLUIR VARIÁREVEIS ABAIXO ATÉ O CRUD FUNCIONAR*/
+
+	//private $descanso_diurno_trabalhado; //daily_rest_worked
+	//private $descanso_noturno_trabalhado;//nocturnal_rest_worked
+	//private $hora_extra_diurna;			//extra_hour_daily1 //retirar essa linha daqui e do banco.
+	//private $hora_extra_diurna2;			//extra_hour_daily2 //retirar essa linha daqui e do banco.
+	//private $hora_extra_diurna3;			//extra_hour_daily3//retirar essa linha daqui e do banco.
+	//private $hora_extra_noturna;			//night_overtime1//retirar essa linha daqui e do banco.
+	//private $hora_extra_noturna2;		//night_overtime2//retirar essa linha daqui e do banco.
+	//private $hora_extra_noturna3;		//night_overtime3//retirar essa linha daqui e do banco.
+
 
 	public function __construct() {
 		$this->bd     = new BD();
@@ -49,9 +53,7 @@ class CartaoPonto
 	//METODOS DO BANCO DE DADOS
 	public function inserir() {
 		$sql     = "INSERT INTO $this->tabela (id_expert, id_process, date_day, morning_entry, morning_departure, late_entry,
-			afternoon_departure, night_entry, night_departure, daily_rest_worked, nocturnal_rest_worked, situation, extra_hour_daily1,
-			extra_hour_daily2, extra_hour_daily3, night_overtime1, night_overtime2, night_overtime3, total_daily_time
-			) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) ";
+			afternoon_departure, night_entry, night_departure, situation, total_daily_time) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) ";
 /*
 Deus Esteve aqui e revisou meu código.
 */
@@ -66,15 +68,7 @@ Deus Esteve aqui e revisou meu código.
 			$this->saida_tarde ?: null,
 			$this->entrada_noite ?: null,
 			$this->saida_noite ?: null,
-			$this->descanso_diurno_trabalhado ?: null,
-			$this->descanso_noturno_trabalhado ?: null,
 			$this->situacao ?: null,
-			$this->hora_extra_diurna ?: null,
-			$this->hora_extra_diurna2 ?: null,
-			$this->hora_extra_diurna3 ?: null,
-			$this->hora_extra_noturna ?: null,
-			$this->hora_extra_noturna2 ?: null,
-			$this->hora_extra_noturna3 ?: null,
 			$this->hora_diaria_total ?: null,
 		));
 		return $retorno;
@@ -98,21 +92,14 @@ Deus Esteve aqui e revisou meu código.
             $obj->entrada_manha               = 			$reg["morning_entry"];
             $obj->entrada_tarde               = 				$reg["late_entry"];
             $obj->entrada_noite               = 			$reg["night_entry"];
-            $obj->descanso_diurno_trabalhado  = 	$reg["daily_rest_worked"];
             $obj->saida_manha                 = 	 			$reg["morning_departure"];
             $obj->saida_tarde                 = 	 			$reg["afternoon_departure"];
             $obj->saida_noite                 = 	 			$reg["night_departure"];
-            $obj->descanso_noturno_trabalhado = $reg["nocturnal_rest_worked"];
-            $obj->hora_extra_diurna           = 			$reg["extra_hour_daily1"];
-            $obj->hora_extra_diurna2          = 			$reg["extra_hour_daily2"];
-            $obj->hora_extra_diurna3          = 			$reg["extra_hour_daily3"];
-            $obj->hora_extra_noturna          = 			$reg["night_overtime1"];
-            $obj->hora_extra_noturna2         = 		$reg["night_overtime2"];
-            $obj->hora_extra_noturna3         = 		$reg["night_overtime3"];
-            $obj->hora_diaria_total           = 			$reg["total_daily_time"];
 						$obj->situacao                    = 					$reg["situation"];
+						$obj->hora_diaria_total           = 			$reg["total_daily_time"];
+
             //adiciona a variavel de retorno
-            $retorno[]                        = $obj;
+            $retorno[][]                      = $obj;
         }
         return $retorno;
     }
@@ -125,25 +112,18 @@ Deus Esteve aqui e revisou meu código.
     }
 
 		public function atualizar() { #modificar essa parada maneiramente
-		    $retorno = false;
+			echo "Ret";
+		    $retorno = true;
 		    $sql = "update $this->tabela set
-		    date_day = '$1',
-		    morning_entry = '$2',
-		    morning_departure = '$3',
-		    late_entry = '$4',
-		    afternoon_departure = '$5',
-		    night_entry = '$6',
-		    night_departure = '$7',
-		    daily_rest_worked = '$8',
-		    nocturnal_rest_worked = '$9',
-		    situation = '$10',
-		    extra_hour_daily1 = '$11',
-		    extra_hour_daily2 = '$12',
-		    extra_hour_daily3 = '$13',
-		    night_overtime1 = '$14',
-		    night_overtime2 = '$15',
-		    night_overtime3 = '$16',
-		    total_daily_time = '$17',	where
+		    date_day = $1,
+		    morning_entry = $2,
+		    morning_departure = $3,
+		    late_entry = $4,
+		    afternoon_departure = $5,
+		    night_entry = $6,
+		    night_departure = $7,
+		    situation = $8,
+		    total_daily_time = $9,	where
 		    id = $this->id";
 
 		    $retorno = pg_query_params($sql, array(
@@ -154,15 +134,7 @@ Deus Esteve aqui e revisou meu código.
 		      $this->saida_tarde ?: null,
 		      $this->entrada_noite ?: null,
 		      $this->saida_noite ?: null,
-		      $this->descanso_diurno_trabalhado ?: null,
-		      $this->descanso_noturno_trabalhado ?: null,
 		      $this->situacao ?: null,
-		      $this->hora_extra_diurna ?: null,
-		      $this->hora_extra_diurna2 ?: null,
-		      $this->hora_extra_diurna3 ?: null,
-		      $this->hora_extra_noturna ?: null,
-		      $this->hora_extra_noturna2 ?: null,
-		      $this->hora_extra_noturna3 ?: null,
 		      $this->hora_diaria_total  ?: null));
 
 		    return $retorno;
@@ -185,19 +157,11 @@ Deus Esteve aqui e revisou meu código.
 						$obj->entrada_manha               = 			$reg["morning_entry"];
 						$obj->entrada_tarde               = 				$reg["late_entry"];
 						$obj->entrada_noite               = 			$reg["night_entry"];
-						$obj->descanso_diurno_trabalhado  = 	$reg["daily_rest_worked"];
 						$obj->saida_manha                 = 	 			$reg["morning_departure"];
 						$obj->saida_tarde                 = 	 			$reg["afternoon_departure"];
 						$obj->saida_noite                 = 	 			$reg["night_departure"];
-						$obj->descanso_noturno_trabalhado = $reg["nocturnal_rest_worked"];
-						$obj->hora_extra_diurna           = 			$reg["extra_hour_daily1"];
-						$obj->hora_extra_diurna2          = 			$reg["extra_hour_daily2"];
-						$obj->hora_extra_diurna3          = 			$reg["extra_hour_daily3"];
-						$obj->hora_extra_noturna          = 			$reg["night_overtime1"];
-						$obj->hora_extra_noturna2         = 		$reg["night_overtime2"];
-						$obj->hora_extra_noturna3         = 		$reg["night_overtime3"];
-						$obj->hora_diaria_total           = 			$reg["total_daily_time"];
 						$obj->situacao                    = 					$reg["situation"];
+						$obj->hora_diaria_total           = 			$reg["total_daily_time"];
             //adiciona a variavel de retorno
             $retorno[]                        = $obj;
         } else {
@@ -207,6 +171,9 @@ Deus Esteve aqui e revisou meu código.
         return $retorno;
     }
 
+		/*NÃO MODIFICAR ABAIXO AINDA ESTA MERDA!!!*/
+
+/*
 		public function somaHoras($id_processo) {
 
 			$sql = "SELECT morning_entry AS a, morning_departure AS b, late_entry AS c, afternoon_departure AS d, night_entry AS e,
@@ -260,7 +227,7 @@ Deus Esteve aqui e revisou meu código.
 
 				return "$horas:$minutos:$segundos";
 			}
-
+*/
 			public function buscarCartaoPonto($id_processo){/*Função que busca se existe o cartão ponto. */
 				$sql = "SELECT * FROM $this->tabela WHERE id_process = $id_processo";
 				$resultado = pg_query($sql);
